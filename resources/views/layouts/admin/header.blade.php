@@ -41,9 +41,12 @@
                                     <a href="lock.html" class="dropdown-item">
                                         <i class="la la-lock"></i> Lock
                                     </a>
-                                    <a href="signin.html" class="dropdown-item logout">
+                                    <a    onclick="logoutForm()" class="dropdown-item logout">
                                         <i class="la la-sign-out"></i> Logout
                                     </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -53,3 +56,9 @@
         </div>
     </div>
 </div>
+<script>
+    function logoutForm(){
+        event.preventDefault();
+        document.getElementById('logout-form').submit();
+    }
+</script>

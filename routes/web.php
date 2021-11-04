@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('panel.admin.dashboard');
-})->name('welcome');
+
+Route::group(['prefix' => 'dashboard', 'middleware' => ['auth']], function () {
+    Route::get('/', 'DashboardController')->name('dashboard');
+});
 
 Auth::routes();
 

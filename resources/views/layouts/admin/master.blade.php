@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Treemium </title>
-        @include('layouts.main.head')
+        @include('layouts.user.head')
     </head>
     <body>
     <div id="preloader">
@@ -17,13 +17,13 @@
     </div>
 
     <div id="main-wrapper">
-         @include('layouts.main.header')
-         @include('layouts.main.sidebar')
+         @include('layouts.user.header')
+         @include('layouts.user.sidebar')
 
                    @yield('content')
-        @include('layouts.main.footer')
+        @include('layouts.user.footer')
     </div>
-        @include('layouts.main.footer-script')
+        @include('layouts.user.footer-script')
 
     </body>
 </html>
