@@ -31,7 +31,7 @@ Route::group(['prefix' => '/' , 'namespace' => 'Auth'], function() {
 
 Route::group(['prefix' => 'user' ], function() {
     Route::get('order/create', 'User\OrderController@create')->name('user.order.create');
-
+    Route::post('order/store', 'User\OrderController@store')->name('user.order.store');
 });
 
 
