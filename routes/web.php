@@ -28,3 +28,10 @@ Route::group(['prefix' => '/' , 'namespace' => 'Auth'], function() {
 
     Route::get('/auth/google/callback','LoginController@handleGoogleCallback');
 });
+
+Route::group(['prefix' => 'user' ], function() {
+    Route::get('order/create', 'User\OrderController@create')->name('user.order.create');
+
+});
+
+

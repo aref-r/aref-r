@@ -6,7 +6,7 @@
 
                     <div class="header-search d-flex align-items-center">
                         <a class="brand-logo me-3" href="index.html">
-                            <img src="./images/logo.png" alt="" width="30">
+                            <img src="{{asset('/images/logo.png')}}" alt="" width="30">
                         </a>
                         <form action="#">
                             <div class="input-group">
