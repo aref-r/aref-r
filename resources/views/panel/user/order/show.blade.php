@@ -12,6 +12,7 @@
             </ul>
         </div>
     @endif
+
     <div class="page_title">
         <div class="container">
             <div class="row">
@@ -52,8 +53,27 @@
                                             <td>Total</td>
                                             <td>{{$order->fee * $order->amount}}</td>
                                         </tr>
+
                                         </tbody>
                                     </table>
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Force Offer</h4>
+                                        </div>
+                                        <hr>
+                                        <form method="post" name="myform" class="currency_validate" action="{{route('user.offer.store')}}">
+                                            @csrf
+                                            <input type="hidden" class="form-control" name="fee" value="{{$order->fee}}">
+
+                                            <input type="hidden" class="form-control" name="currency_id" value="{{$order->currency_id}}">
+
+                                            <input type="hidden" class="form-control" name="order_id" value="{{$order->id}}">
+
+                                            <input type="hidden" class="form-control" name="amount" value="{{$order->amount}}">
+
+                                            <button class="btn btn-primary w-100">Send Offer</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +114,4 @@
             </div>
         </div>
     </div>
-
-
-
 @endsection
