@@ -5,7 +5,9 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\OrderRequest;
 use App\Models\Currency;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -18,8 +20,9 @@ class OrderController extends Controller
 
     public function store(OrderRequest $request)
     {
+        Order::create(array_merge($request->all(),['user_id'=>Auth::id()]));
 
-        dd($request);
+        return redirect()->back()->with('success', 'سفارش با موفیقت ثبت شد.');
 
     }
 }

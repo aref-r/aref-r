@@ -18,7 +18,9 @@ class CreateOrdersTable extends Migration
             $table->bigInteger('fee');
             $table->bigInteger('amount');
             $table->bigInteger('user_id');
-            $table->timestamp('delete_at1')->nullable();
+            $table->bigInteger('currency_id');
+            $table->string('type');
+            $table->timestamp('delete_at')->nullable();
             $table->timestamps();
         });
     }

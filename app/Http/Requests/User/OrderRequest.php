@@ -26,6 +26,7 @@ class OrderRequest extends FormRequest
         return [
             'amount' => 'required|integer',
             'fee' => 'required|integer',
+            'currency_id' => 'required|integer',
         ];
     }
 }

@@ -10,7 +10,7 @@
                     <span class="nav-text">Home</span>
                 </a>
             </li>
-            <li><a href="buy-sell.html">
+            <li><a href="{{ route('user.order.create') }}">
                     <span><i class="mdi mdi-repeat"></i></span>
                     <span class="nav-text">Exchange</span>
                 </a>

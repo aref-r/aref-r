@@ -2,7 +2,13 @@
 
 
 @section('content')
-
+    @if (\Session::has('success'))
+        <div class="alert alert-success">
+            <ul>
+                <li>{!! \Session::get('success') !!}</li>
+            </ul>
+        </div>
+    @endif
     <div class="page_title">
         <div class="container">
             <div class="row">
@@ -35,6 +41,7 @@
                                     <div class="tab-pane fade show active" id="buy" role="tabpanel">
                                         <form method="post" name="myform" class="currency_validate" action="{{route('user.order.store')}}">
                                             @csrf
+                                            <input type="hidden" value="buy" name="type">
                                             <div class="mb-3">
                                                 <label class="me-sm-2">Currency</label>
                                                 <div class="input-group mb-3">
@@ -42,7 +49,7 @@
                                                         <label class="input-group-text"><i
                                                                 class="cc BTC-alt"></i></label>
                                                     </div>
-                                                    <select name='currency' class="form-control">
+                                                    <select name='currency_id' class="form-control">
                                                         <option value="">Select</option>
                                                         @foreach($currencies as $currency)
                                                             <option value="{{$currency->id}}">{{$currency->name}}</option>
@@ -99,7 +106,9 @@
                                         </form>
                                     </div>
                                     <div class="tab-pane fade" id="sell">
-                                        <form method="post" name="myform" class="currency2_validate">
+                                        <form method="post" name="myform" class="currency_validate" action="{{route('user.order.store')}}">
+                                            @csrf
+                                            <input type="hidden" value="sell" name="type">
                                             <div class="mb-3">
                                                 <label class="me-sm-2">Currency</label>
                                                 <div class="input-group mb-3">
@@ -107,37 +116,51 @@
                                                         <label class="input-group-text"><i
                                                                 class="cc BTC-alt"></i></label>
                                                     </div>
-                                                    <select name='currency' class="form-control">
+                                                    <select name='currency_id' class="form-control">
                                                         <option value="">Select</option>
-                                                        <option value="bitcoin">Bitcoin</option>
-                                                        <option value="litecoin">Litecoin</option>
+                                                        @foreach($currencies as $currency)
+                                                            <option value="{{$currency->id}}">{{$currency->name}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+                                            <!--
+                                                                                        <div class="mb-3">
+                                                                                            <label class="me-sm-2">Payment Method</label>
+                                                                                            <div class="input-group mb-3">
+                                                                                                <div class="input-group-prepend">
+                                                                                                    <label class="input-group-text"><i
+                                                                                                            class="fa fa-bank"></i></label>
+                                                                                                </div>
+                                                                                                <select class="form-control" name="method">
+                                                                                                    <option value="">Select</option>
+                                                                                                    <option value="bank">Bank of America ********45845</option>
+                                                                                                    <option value="master">Master Card ***********5458</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                            -->
 
                                             <div class="mb-3">
-                                                <label class="me-sm-2">Payment Method</label>
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <label class="input-group-text"><i
-                                                                class="fa fa-bank"></i></label>
-                                                    </div>
-                                                    <select class="form-control" name="method">
-                                                        <option value="">Select</option>
-                                                        <option value="bank">Bank of America ********45845</option>
-                                                        <option value="master">Master Card ***********5458</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="mb-3">
-                                                <label class="me-sm-2">Enter your amount</label>
+                                                <label class="me-sm-2">Enter your amount and price</label>
                                                 <div class="input-group">
-                                                    <input type="text" name="currency_amount" class="form-control"
-                                                           placeholder="0.0214 BTC">
-                                                    <input type="text" name="usd_amount" class="form-control"
-                                                           placeholder="125.00 USD">
+                                                    <input type="text" name="amount" class="form-control"
+                                                           placeholder="amount">
+
+                                                    <input type="text" name="fee" class="form-control"
+                                                           placeholder="price">
+
                                                 </div>
+                                                @error('amount')
+                                                <div>
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
+                                                @enderror
+                                                @error('fee')
+                                                <div>
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
+                                                @enderror
                                                 <div class="d-flex justify-content-between mt-3">
                                                     <p class="mb-0">Monthly Limit</p>
                                                     <h6 class="mb-0">$49750 remaining</h6>
