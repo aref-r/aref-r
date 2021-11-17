@@ -23,6 +23,14 @@ class OrderController extends Controller
         Order::create(array_merge($request->all(),['user_id'=>Auth::id()]));
 
         return redirect()->back()->with('success', 'سفارش با موفیقت ثبت شد.');
+    }
 
+
+    public function index()
+    {
+
+        return view('panel.user.order.index')->with([
+            'orders' => Order::all(),
+        ]);
     }
 }

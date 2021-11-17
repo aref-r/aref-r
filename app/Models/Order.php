@@ -12,4 +12,10 @@ class Order extends Model
         'type', 'currency_id', 'amount', 'fee', 'user_id', 'updated_at', 'created_at',
     ];
 
+
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
+
+    }
 }
