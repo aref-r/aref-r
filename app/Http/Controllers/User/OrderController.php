@@ -28,9 +28,16 @@ class OrderController extends Controller
 
     public function index()
     {
-
         return view('panel.user.order.index')->with([
             'orders' => Order::all(),
+        ]);
+    }
+
+
+    public function show($id)
+    {
+        return view('panel.user.order.show')->with([
+            'order' => Order::findorfail($id),
         ]);
     }
 }
