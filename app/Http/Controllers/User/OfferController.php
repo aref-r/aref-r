@@ -17,8 +17,7 @@ class OfferController extends Controller
         $offer = Offer::create(array_merge($request->all(),['user_id'=>Auth::id()]));
         $order = $offer->order()->first();
 
-        Notification::send($users, new SendOffer());
-
+        Notification::send($order->user()->get(), new SendOffer());
 
         return redirect()->back()->with('success', 'پیشنهاد شما با موفقیت ثبت شد.');
     }
