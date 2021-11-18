@@ -88,8 +88,9 @@
                             <form action="">
                                 <div class="mb-3">
                                     <div class="input-group mb-3">
+
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text"><i class="fa fa-money"></i></label>
+                                            <label class="input-group-text"><i class="fa fa-money"></i>  </label>
                                         </div>
                                         <input type="text" class="form-control" placeholder="5000 USD">
                                     </div>

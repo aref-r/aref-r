@@ -24,7 +24,9 @@ class OfferRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fee' => 'required',
+            'amount' => 'required',
+            'order_id' => 'required',
         ];
     }
 }

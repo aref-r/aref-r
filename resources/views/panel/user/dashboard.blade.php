@@ -2,6 +2,16 @@
 
 
 @section('content')
+
+
+    @if (\Session::has('success'))
+        <div class="alert alert-success">
+            <ul>
+                <li>{!! \Session::get('success') !!}</li>
+            </ul>
+        </div>
+    @endif
+
     <div class="page_title">
         <div class="container">
             <div class="row">
@@ -16,259 +26,25 @@
         </div>
     </div>
 
-
-    <div class="content-body">
+    <div class="content-body"   >
         <div class="container">
             <div class="row">
-                <div class="col-xl-12">
-                    <div class="row">
-                        <div class="col-xl-3 col-lg-6 col-md-6">
-                            <div class="widget-card">
-                                <div class="widget-title">
-                                    <h5>Balance</h5>
-                                    <p class="text-success">133% <span><i class="las la-arrow-up"></i></span></p>
-                                </div>
-                                <div class="widget-info">
-                                    <h3>$18,235.0</h3>
-                                    <p>USD</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6 col-md-6">
-                            <div class="widget-card">
-                                <div class="widget-title">
-                                    <h5>Balance</h5>
-                                    <p class="text-danger">133% <span><i class="las la-arrow-down"></i></span></p>
-                                </div>
-                                <div class="widget-info">
-                                    <h3>$18,235.0</h3>
-                                    <p>USD</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6 col-md-6">
-                            <div class="widget-card">
-                                <div class="widget-title">
-                                    <h5>Balance</h5>
-                                    <p class="text-success">133% <span><i class="las la-arrow-up"></i></span></p>
-                                </div>
-                                <div class="widget-info">
-                                    <h3>$18,235.0</h3>
-                                    <p>USD</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-lg-6 col-md-6">
-                            <div class="widget-card">
-                                <div class="widget-title">
-                                    <h5>Balance</h5>
-                                    <p class="text-danger">133% <span><i class="las la-arrow-down"></i></span></p>
-                                </div>
-                                <div class="widget-info">
-                                    <h3>$18,235.0</h3>
-                                    <p>USD</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-xl-8 col-lg-12 col-xxl-8">
-                            <div class="card profile_chart transparent">
-                                <div class="card-header">
-                                    <div class="chart_current_data">
-                                        <h3>254856 <span>USD</span></h3>
-                                        <p class="text-success">125648 <span>USD (20%)</span></p>
-                                    </div>
-                                    <div class="duration-option">
-                                        <a id="all" class="active">ALL</a>
-                                        <a id="one_month" class="">1M</a>
-                                        <a id="six_months">6M</a>
-                                        <a id="one_year" class="">1Y</a>
-                                        <a id="ytd" class="">YTD</a>
-                                    </div>
-                                </div>
-                                <div class="card-body">
-                                    <div id="timeline-chart"></div>
-                                    <div class="chart-content text-center">
-                                        <div class="row">
-                                            <div class="col-xl-4 col-sm-6 col-6">
-                                                <div class="chart-stat">
-                                                    <p class="mb-1">24hr Volume</p>
-                                                    <strong>$1236548.325</strong>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-sm-6 col-6">
-                                                <div class="chart-stat">
-                                                    <p class="mb-1">Market Cap</p>
-                                                    <strong>19B USD</strong>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-sm-6 col-6">
-                                                <div class="chart-stat">
-                                                    <p class="mb-1">Circulating</p>
-                                                    <strong>29.4M BTC</strong>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-sm-6 col-6">
-                                                <div class="chart-stat">
-                                                    <p class="mb-1">All Time High</p>
-                                                    <strong>19.783.06 USD</strong>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-sm-6 col-6">
-                                                <div class="chart-stat">
-                                                    <p class="mb-1">Typical hold </p>
-                                                    <strong>88 days</strong>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-sm-6 col-6">
-                                                <div class="chart-stat">
-                                                    <p class="mb-1">Trading activity </p>
-                                                    <strong>70% buy </strong>
-                                                </div>
-                                            </div>
-                                            <!-- <div class="col-xl-4 col-sm-6 col-6">
-                                                <div class="chart-stat">
-                                                    <p class="mb-1">Popularity </p>
-                                                    <strong>#1 most held </strong>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-sm-6 col-6">
-                                                <div class="chart-stat">
-                                                    <p class="mb-1">Popularity </p>
-                                                    <strong>#1 most held </strong>
-                                                </div>
-                                            </div> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-4 col-lg-12 col-xxl-4">
-                            <div class="card balance-widget transparent">
-                                <div class="card-body">
-                                    <div id="wallet-chart"></div>
-                                    <div class="balance-widget">
-                                        <h4>Total Balance : <strong>$125480</strong></h4>
-                                        <ul class="list-unstyled">
-                                            <li class="d-flex">
-                                                <i class="cc BTC me-3"></i>
-                                                <div class="flex-grow-1">
-                                                    <h5 class="m-0">Bitcoin</h6>
-                                                </div>
-                                                <div class="text-right">
-                                                    <h5>0.000242 BTC</h5>
-                                                    <span>0.125 USD</span>
-                                                </div>
-                                            </li>
-                                            <li class="d-flex">
-                                                <i class="cc LTC me-3"></i>
-                                                <div class="flex-grow-1">
-                                                    <h5 class="m-0">Litecoin</h6>
-                                                </div>
-                                                <div class="text-right">
-                                                    <h5>0.000242 LTC</h5>
-                                                    <span>0.125 USD</span>
-                                                </div>
-                                            </li>
-                                            <li class="d-flex">
-                                                <i class="cc XRP me-3"></i>
-                                                <div class="flex-grow-1">
-                                                    <h5 class="m-0">Ripple</h6>
-                                                </div>
-                                                <div class="text-right">
-                                                    <h5>0.000242 XRP</h5>
-                                                    <span>0.125 USD</span>
-                                                </div>
-                                            </li>
-                                            <li class="d-flex">
-                                                <i class="cc DASH me-3"></i>
-                                                <div class="flex-grow-1">
-                                                    <h5 class="m-0">Dash</h6>
-                                                </div>
-                                                <div class="text-right">
-                                                    <h5>0.000242 XRP</h5>
-                                                    <span>0.125 USD</span>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-xxl-12">
-                            <div class="row">
-                                <div class="col-xl-4">
-                                    <div class="widget-card">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="widget-stat">
-                                                <div class="coin-title">
-                                                    <span><i class="cc BTC-alt"></i></span>
-                                                    <h5 class="d-inline-block ms-2 mb-3">Bitcoin
-                                                        <span>(24h)</span>
-                                                    </h5>
-                                                </div>
-                                                <h4>USD 1254.36 <span class="badge bg-success ms-2">+
-                                                            06%</span>
-                                                </h4>
-                                            </div>
-                                            <div id="btcChart"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4">
-                                    <div class="widget-card">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="widget-stat">
-                                                <div class="coin-title">
-                                                    <span><i class="cc ETH-alt"></i></span>
-                                                    <h5 class="d-inline-block ms-2 mb-3">Ethereum
-                                                        <span>(24h)</span>
-                                                    </h5>
-                                                </div>
-                                                <h4>USD 1254.36 <span class="badge bg-danger ms-2">-
-                                                            06%</span>
-                                                </h4>
-                                            </div>
-                                            <div id="ltcChart"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-4">
-                                    <div class="widget-card">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <div class="widget-stat">
-                                                <div class="coin-title">
-                                                    <span><i class="cc LTC-alt"></i></span>
-                                                    <h5 class="d-inline-block ms-2 mb-3">Litecoin
-                                                        <span>(24h)</span>
-                                                    </h5>
-                                                </div>
-                                                <h4>USD 1254.36 <span class="badge bg-primary ms-2">
-                                                            06%</span>
-                                                </h4>
-                                            </div>
-                                            <div id="xrpChart"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-12">
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-12 col-xxl-4">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Exchange</h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="buy-sell-widget">
-                                        <form method="post" name="myform" class="currency_validate">
+                <div class="col-xl-12 col-lg-12 col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="buy-sell-widget">
+                                <ul class="nav nav-tabs">
+                                    <li class="nav-item"><a class="nav-link active" data-toggle="tab"
+                                                            href="#buy">Buy</a>
+                                    </li>
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#sell">Sell</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content tab-content-default">
+                                    <div class="tab-pane fade show active" id="buy" role="tabpanel">
+                                        <form method="post" name="myform" class="currency_validate" action="{{route('user.order.store')}}">
+                                            @csrf
+                                            <input type="hidden" value="buy" name="type">
                                             <div class="mb-3">
                                                 <label class="me-sm-2">Currency</label>
                                                 <div class="input-group mb-3">
@@ -276,37 +52,118 @@
                                                         <label class="input-group-text"><i
                                                                 class="cc BTC-alt"></i></label>
                                                     </div>
-                                                    <select name='currency' class="form-control">
+                                                    <select name='currency_id' class="form-control">
                                                         <option value="">Select</option>
-                                                        <option value="bitcoin">Bitcoin</option>
-                                                        <option value="litecoin">Litecoin</option>
+                                                        @foreach($currencies as $currency)
+                                                            <option value="{{$currency->id}}">{{$currency->name}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+                                            <!--
+                                                                                        <div class="mb-3">
+                                                                                            <label class="me-sm-2">Payment Method</label>
+                                                                                            <div class="input-group mb-3">
+                                                                                                <div class="input-group-prepend">
+                                                                                                    <label class="input-group-text"><i
+                                                                                                            class="fa fa-bank"></i></label>
+                                                                                                </div>
+                                                                                                <select class="form-control" name="method">
+                                                                                                    <option value="">Select</option>
+                                                                                                    <option value="bank">Bank of America ********45845</option>
+                                                                                                    <option value="master">Master Card ***********5458</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                            -->
 
                                             <div class="mb-3">
-                                                <label class="me-sm-2">Payment Method</label>
+                                                <label class="me-sm-2">Enter your amount and price</label>
+                                                <div class="input-group">
+                                                    <input type="text" name="amount" class="form-control"
+                                                           placeholder="amount">
+
+                                                    <input type="text" name="fee" class="form-control"
+                                                           placeholder="price">
+
+                                                </div>
+                                                @error('amount')
+                                                <div>
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
+                                                @enderror
+                                                @error('fee')
+                                                <div>
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
+                                                @enderror
+                                                <div class="d-flex justify-content-between mt-3">
+                                                    <p class="mb-0">Monthly Limit</p>
+                                                    <h6 class="mb-0">$49750 remaining</h6>
+                                                </div>
+                                            </div>
+                                            <button type="submit" name="submit"
+                                                    class="btn btn-success w-100">Exchange
+                                                Now</button>
+
+                                        </form>
+                                    </div>
+                                    <div class="tab-pane fade" id="sell">
+                                        <form method="post" name="myform" class="currency_validate" action="{{route('user.order.store')}}">
+                                            @csrf
+                                            <input type="hidden" value="sell" name="type">
+                                            <div class="mb-3">
+                                                <label class="me-sm-2">Currency</label>
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <label class="input-group-text"><i
-                                                                class="fa fa-bank"></i></label>
+                                                                class="cc BTC-alt"></i></label>
                                                     </div>
-                                                    <select class="form-control" name="method">
+                                                    <select name='currency_id' class="form-control">
                                                         <option value="">Select</option>
-                                                        <option value="bank">Bank of America ********45845</option>
-                                                        <option value="master">Master Card ***********5458</option>
+                                                        @foreach($currencies as $currency)
+                                                            <option value="{{$currency->id}}">{{$currency->name}}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                                             </div>
+                                            <!--
+                                                                                        <div class="mb-3">
+                                                                                            <label class="me-sm-2">Payment Method</label>
+                                                                                            <div class="input-group mb-3">
+                                                                                                <div class="input-group-prepend">
+                                                                                                    <label class="input-group-text"><i
+                                                                                                            class="fa fa-bank"></i></label>
+                                                                                                </div>
+                                                                                                <select class="form-control" name="method">
+                                                                                                    <option value="">Select</option>
+                                                                                                    <option value="bank">Bank of America ********45845</option>
+                                                                                                    <option value="master">Master Card ***********5458</option>
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        </div>
+                                            -->
 
                                             <div class="mb-3">
-                                                <label class="me-sm-2">Enter your amount</label>
+                                                <label class="me-sm-2">Enter your amount and price</label>
                                                 <div class="input-group">
-                                                    <input type="text" name="currency_amount" class="form-control"
-                                                           placeholder="0.0214 BTC">
-                                                    <input type="text" name="usd_amount" class="form-control"
-                                                           placeholder="125.00 USD">
+                                                    <input type="text" name="amount" class="form-control"
+                                                           placeholder="amount">
+
+                                                    <input type="text" name="fee" class="form-control"
+                                                           placeholder="price">
+
                                                 </div>
+                                                @error('amount')
+                                                <div>
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
+                                                @enderror
+                                                @error('fee')
+                                                <div>
+                                                    <strong>{{ $message }}</strong>
+                                                </div>
+                                                @enderror
                                                 <div class="d-flex justify-content-between mt-3">
                                                     <p class="mb-0">Monthly Limit</p>
                                                     <h6 class="mb-0">$49750 remaining</h6>
@@ -320,112 +177,81 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
-                        <div class="col-xl-6 col-lg-12 col-xxl-8">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4 class="card-title">Transaction </h4>
-                                </div>
-                                <div class="card-body">
-                                    <div class="transaction-widget">
-                                        <ul class="list-unstyled">
-                                            <li class="d-flex">
-                                                <span class="sold-thumb"><i class="la la-arrow-down"></i></span>
-                                                <div class="flex-grow-1">
-                                                    <p>
-                                                        <small>9 November,
-                                                            <script>
-                                                                var CurrentYear = new Date().getFullYear()
-                                                                document.write(CurrentYear)
-                                                            </script>
-                                                        </small>
-                                                        <small>15:33</small>
-                                                    </p>
-                                                    <p class="wallet-address text-dark">15f5s8s47bhj61r8w4e77e5e56
-                                                    </p>
-                                                </div>
-                                                <div class="text-right">
-                                                    <h4>0.000242 BTC</h4>
-                                                </div>
-                                            </li>
-                                            <li class="d-flex">
-                                                <span class="buy-thumb"><i class="la la-arrow-up"></i></span>
-                                                <div class="flex-grow-1">
-                                                    <p>
-                                                        <small>9 November,
-                                                            <script>
-                                                                var CurrentYear = new Date().getFullYear()
-                                                                document.write(CurrentYear)
-                                                            </script>
-                                                        </small>
-                                                        <small>15:33</small>
-                                                    </p>
-                                                    <p class="wallet-address text-dark">15f5s8s47bhj61r8w4e77e5e56
-                                                    </p>
-                                                </div>
-                                                <div class="text-right">
-                                                    <h4>0.000242 LTC</h4>
-                                                </div>
-                                            </li>
-                                            <li class="d-flex">
-                                                <span class="sold-thumb"><i class="la la-arrow-down"></i></span>
-                                                <div class="flex-grow-1">
-                                                    <p>
-                                                        <small>9 November,
-                                                            <script>
-                                                                var CurrentYear = new Date().getFullYear()
-                                                                document.write(CurrentYear)
-                                                            </script>
-                                                        </small>
-                                                        <small>15:33</small>
-                                                    </p>
-                                                    <p class="wallet-address text-dark">15f5s8s47bhj61r8w4e77e5e56
-                                                    </p>
-                                                </div>
-                                                <div class="text-right">
-                                                    <h4>0.000242 XRP</h4>
-                                                </div>
-                                            </li>
-                                            <li class="d-flex">
-                                                <span class="buy-thumb"><i class="la la-arrow-up"></i></span>
-                                                <div class="flex-grow-1">
-                                                    <p>
-                                                        <small>9 November,
-                                                            <script>
-                                                                var CurrentYear = new Date().getFullYear()
-                                                                document.write(CurrentYear)
-                                                            </script>
-                                                        </small>
-                                                        <small>15:33</small>
-                                                    </p>
-                                                    <p class="wallet-address text-dark">15f5s8s47bhj61r8w4e77e5e56
-                                                    </p>
-                                                </div>
-                                                <div class="text-right">
-                                                    <h4>0.000242 XRP</h4>
-                                                </div>
-                                            </li>
-                                            <li class="d-flex">
-                                                <span class="buy-thumb"><i class="la la-arrow-up"></i></span>
-                                                <div class="flex-grow-1">
-                                                    <p>
-                                                        <small>9 November,
-                                                            <script>
-                                                                var CurrentYear = new Date().getFullYear()
-                                                                document.write(CurrentYear)
-                                                            </script>
-                                                        </small>
-                                                        <small>15:33</small>
-                                                    </p>
-                                                    <p class="wallet-address text-dark">15f5s8s47bhj61r8w4e77e5e56
-                                                    </p>
-                                                </div>
-                                                <div class="text-right">
-                                                    <h4>0.000242 XRP</h4>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
+                    </div>
+                    <p class="p-4">Note: Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi cupiditate
+                        suscipit explicabo voluptas eos in tenetur error temporibus dolorum. Nulla!</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="content-body">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="card">
+                        <div class="card-header border-0">
+                            <h4 class="card-title">All Activities</h4>
+                        </div>
+                        <div class="card-body pt-0">
+                            <div class="transaction-table">
+                                <div class="table-responsive">
+                                    <table class="table mb-0 table-responsive-sm">
+                                        <tbody>
+                                        @foreach($orders as $order)
+                                            @if($order->type == 'sell')
+                                                <tr>
+                                                    <td><span class="sold-thumb"><i class="la la-arrow-down"></i></span>
+                                                    </td>
+
+                                                    <td>
+                                                        <span class="badge bg-danger">Sold</span>
+                                                    </td>
+                                                    <td>
+                                                        <i class="cc BTC"></i> {{$order->currency->name}}
+                                                    </td>
+                                                    <td>
+                                                        Using - Bank *******5264
+                                                    </td>
+                                                    <td class="text-danger">{{$order->fee}} IRR </td>
+                                                    <td>{{$order->amount}}</td>
+                                                    <td>
+                                                        <button type="submit" name="submit"
+                                                                class="btn btn-success w-100"  data-toggle="modal" data-target="#exampleModal"
+                                                                onclick="setValueModal({{$order->id}},{{$order->amount}},{{$order->fee}})">
+                                                            Send Offer</button>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                            @if($order->type == 'buy')
+                                                <tr>
+                                                    <td><span class="buy-thumb"><i class="la la-arrow-up"></i></span>
+                                                    </td>
+                                                    <td>
+                                                        <span class="badge bg-success">Buy</span>
+                                                    </td>
+                                                    <td>
+                                                        <i class="cc LTC"></i>  {{$order->currency->name}}
+                                                    </td>
+                                                    <td>
+                                                        Using - Card *******8475
+                                                    </td>
+                                                    <td class="text-success">{{$order->fee}} IRR </td>
+                                                    <td>{{$order->amount}}</td>
+                                                    <td>
+                                                        <button type="submit" name="submit"
+                                                                class="btn btn-success w-100"  data-toggle="modal" data-target="#exampleModal"
+                                                                onclick="setValueModal({{$order->id}},{{$order->amount}},{{$order->fee}})">
+                                                            Send Offer</button>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -435,6 +261,62 @@
         </div>
     </div>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Send Offer</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" name="myform" class="currency_validate" action="{{route('user.offer.store')}}">
+                <div class="modal-body">
 
+                        @csrf
+                        <div class="mb-3">
+                            <div class="input-group mb-3">
+{{--                                <div class="input-group-prepend">--}}
+{{--                                    <label class="input-group-text">Fee</label>--}}
+{{--                                </div>--}}
+                                <input type="text" class="form-control" name="fee" id="fee_modal" placeholder="Fee">
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="mb-3">
+                            <div class="input-group mb-3">
+{{--                                <div class="input-group-prepend">--}}
+{{--                                    <label class="input-group-text">Amount</label>--}}
+{{--                                </div>--}}
+                                <input type="text" class="form-control" name="amount"  id="amount_modal" placeholder="Amount">
+                            </div>
+                        </div>
+
+
+                        <input type="hidden" class="form-control" name="order_id" id="order_id_modal">
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Confirm</button>
+                        </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
 
 @endsection
+
+<script type="text/javascript">
+
+    function setValueModal(orderId,fee,amount){
+     document.getElementById('order_id_modal').value = orderId;
+     document.getElementById('fee_modal').value = fee;
+     document.getElementById('amount_modal').value = amount;
+    }
+</script>

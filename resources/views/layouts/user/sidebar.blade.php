@@ -1,7 +1,7 @@
 <div class="sidebar">
     <a class="brand-logo" href="index.html">
         <img src="{{asset('/images/logo.png')}}" alt="">
-        <span>Treemium </span></a>
+        <span>Pay Pooler </span></a>
     <div class="menu">
         <ul>
             <li>
