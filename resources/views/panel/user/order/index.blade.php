@@ -1,7 +1,18 @@
 @extends('layouts.user.master')
 
 
+@section('style')
+<style>
+    table tr {
+        cursor: pointer;
+    }
+</style>
+
+@endsection
+
+
 @section('content')
+
 
     @if (\Session::has('success'))
         <div class="alert alert-success">
@@ -40,25 +51,27 @@
                                 <tbody>
                                    @foreach($orders as $order)
                                        @if($order->type == 'sell')
-                                           <tr>
-                                                <td><span class="sold-thumb"><i class="la la-arrow-down"></i></span>
-                                                </td>
+                                           <tr >
 
-                                                <td>
-                                                    <span class="badge bg-danger">Sold</span>
-                                                </td>
-                                                <td>
-                                                    <i class="cc BTC"></i> {{$order->currency->name}}
-                                                </td>
-                                                <td>
-                                                    Using - Bank *******5264
-                                                </td>
-                                                <td class="text-danger">{{$order->fee}} IRR </td>
-                                                <td>{{$order->amount}}</td>
+                                               <td>
+                                                   <span class="sold-thumb"><i class="la la-arrow-down"></i></span>
+                                               </td>
+                                               <td>
+                                                   <span class="badge bg-danger">Sold</span>
+                                               </td>
+                                               <td>
+                                                   <i class="cc BTC"></i> {{$order->currency->name}}
+                                               </td>
+                                               <td>
+                                                   Using - Bank *******5264
+                                               </td>
+                                               <td class="text-danger">{{$order->fee}} IRR </td>
+                                               <td>{{$order->amount}}</td>
+                                               <td><a class="btn" href="{{ route('user.order.show',['id' =>  $order->id]) }}">show</a></td>
                                            </tr>
                                        @endif
                                        @if($order->type == 'buy')
-                                           <tr>
+                                           <tr >
                                                <td><span class="buy-thumb"><i class="la la-arrow-up"></i></span>
                                                </td>
                                                <td>
@@ -72,6 +85,8 @@
                                                </td>
                                                <td class="text-success">{{$order->fee}} IRR </td>
                                                <td>{{$order->amount}}</td>
+                                               <td><a class="btn" href="{{ route('user.order.show',['id' =>  $order->id]) }}">show</a></td>
+
                                            </tr>
                                        @endif
                                    @endforeach
@@ -85,5 +100,25 @@
             </div>
         </div>
     </div>
+
+@endsection
+
+
+@section('scripts')
+    <script>
+        $(function() {
+            $("table tbody tr").click(function(e) {
+                var u = $(this).data("link");
+                var t = $(this).data("target");
+                console.log(u, t);
+                if (t.length) {
+                    window.open(u, t);
+                } else {
+                    window.location.href = u;
+                }
+            });
+        });
+
+    </script>
 
 @endsection

@@ -30,7 +30,7 @@
     <div class="content-body">
         <div class="container">
             <div class="row">
-                <div class="col-xl-6 col-lg-12 col-md-12">
+                <div class="col-xl-12 col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="buyer-seller">
@@ -56,59 +56,36 @@
 
                                         </tbody>
                                     </table>
-                                    <div class="card">
-                                        <div class="card-header">
-                                            <h4 class="card-title">Force Offer</h4>
-                                        </div>
-                                        <hr>
-                                        <form method="post" name="myform" class="currency_validate" action="{{route('user.offer.store')}}">
-                                            @csrf
-                                            <input type="hidden" class="form-control" name="fee" value="{{$order->fee}}">
-
-                                            <input type="hidden" class="form-control" name="currency_id" value="{{$order->currency_id}}">
-
-                                            <input type="hidden" class="form-control" name="order_id" value="{{$order->id}}">
-
-                                            <input type="hidden" class="form-control" name="amount" value="{{$order->amount}}">
-
-                                            <button class="btn btn-primary w-100">Send Offer</button>
-                                        </form>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-12 col-md-12">
+            </div>
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12">
                     <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title">Withdraw</h4>
-                        </div>
                         <div class="card-body">
-                            <form action="">
-                                <div class="mb-3">
-                                    <div class="input-group mb-3">
-
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text"><i class="fa fa-money"></i>  </label>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="5000 USD">
-                                    </div>
+                            <div class="buyer-seller">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                        <tr>
+                                            <td>Amount</td>
+                                            <td>Fee</td>
+                                            <td></td>
+                                        </tr>
+                                        @foreach($offers as $offer)
+                                            <tr>
+                                                <td>{{ $offer->amount }}</td>
+                                                <td>{{ $offer->fee }}</td>
+                                                <td><a href="">Accept</a></td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="mb-3">
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text"><i class="fa fa-bank"></i></label>
-                                        </div>
-                                        <select class="form-control">
-                                            <option>Bank of America ********45845</option>
-                                            <option>Master Card ***********5458</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <button class="btn btn-primary w-100">Withdraw Now</button>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
