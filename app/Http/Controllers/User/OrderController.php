@@ -42,4 +42,6 @@ class OrderController extends Controller
             'offers' => $order->offers()->get(),
         ]);
     }
+
+
 }

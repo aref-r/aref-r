@@ -39,6 +39,8 @@ Route::group(['prefix' => 'user','middleware' => ['auth'] ], function() {
 
     // offer
     Route::post('offer/create', 'User\OfferController@store')->name('user.offer.store');
+    Route::post('offer/accept-offer', 'User\OfferController@accept_offer')->name('user.offer.accept_offer');
+
 
 });
 

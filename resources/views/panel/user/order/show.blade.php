@@ -79,7 +79,14 @@
                                             <tr>
                                                 <td>{{ $offer->amount }}</td>
                                                 <td>{{ $offer->fee }}</td>
-                                                <td><a href="">Accept</a></td>
+
+                                                <td>
+                                                    <form action="{{route('user.offer.accept_offer')}}" method="post">
+                                                        @csrf
+                                                        <input type="hidden" name="offer_id" value="{{$offer->id}}">
+                                                        <button type="submit">Accept</button>
+                                                    </form>
+                                                </td>
                                             </tr>
                                         @endforeach
                                         </tbody>

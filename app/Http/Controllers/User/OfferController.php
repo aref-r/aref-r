@@ -4,8 +4,10 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\OfferRequest;
+use App\Http\Requests\AcceptOfferRequest;
 use App\Models\Offer;
 use App\Notifications\SendOffer;
+use App\Notifications\AcceptOffer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -20,5 +22,22 @@ class OfferController extends Controller
         Notification::send($order->user()->get(), new SendOffer());
 
         return redirect()->back()->with('success', 'پیشنهاد شما با موفقیت ثبت شد.');
+    }
+
+    public function accept_offer(AcceptOfferRequest $request)
+    {
+        // accept offer
+        $offer = Offer::findorfail($request->get('offer_id'));
+        $offer->is_accept = 1;
+        $offer->save();
+        // send notification for offer creator
+        Notification::send($offer->user()->get(), new AcceptOffer());
+
+        //checked order
+        $order = $offer->order;
+        $order->is_accept = 1;
+        $order->save();
+        return redirect()->back()->with('success', 'پیشنهاد شما با موفقیت تایید شد.');
+
     }
 }
