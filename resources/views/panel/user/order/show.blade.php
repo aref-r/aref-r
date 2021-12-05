@@ -86,6 +86,11 @@
                                                         <button type="submit">Accept</button>
                                                     </form>
                                                 </td>
+                                                @if($offer->is_accept)
+                                                    <td>
+                                                        <a class="btn" href="{{route('user.receipt.create' , ['order' => $order->id])}}">send Receipt</a>
+                                                    </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                         </tbody>

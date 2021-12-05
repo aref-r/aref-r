@@ -49,8 +49,8 @@
                                 <div class="table-responsive">
                                     <table class="table mb-0 table-responsive-sm">
                                         <tbody>
-                                        @foreach($orders as $order)
-                                            @if($order->type == 'sell')
+                                        @foreach($offers as $offer)
+                                            @if($offer->order->type == 'sell')
                                                 <tr>
                                                     <td>
                                                         <span class="sold-thumb"><i class="la la-arrow-down"></i></span>
@@ -59,17 +59,17 @@
                                                         <span class="badge bg-danger">Sold</span>
                                                     </td>
                                                     <td>
-                                                        <i class="cc BTC"></i> {{$order->currency->name}}
+                                                        <i class="cc BTC"></i> {{$offer->order->currency->name}}
                                                     </td>
                                                     <td>
                                                         Using - Bank *******5264
                                                     </td>
-                                                    <td class="text-danger">{{$order->fee}} IRR </td>
-                                                    <td>{{$order->amount}}</td>
-                                                    <td><a class="btn" href="{{ route('user.order.show',['id' =>  $order->id]) }}">show</a></td>
+                                                    <td class="text-danger">{{$offer->fee}} IRR </td>
+                                                    <td>{{$offer->amount}}</td>
+                                                    <td><a class="btn" href="{{ route('user.order.show',['id' =>  $offer->id]) }}">show</a></td>
                                                 </tr>
                                             @endif
-                                            @if($order->type == 'buy')
+                                            @if($offer->order->type == 'buy')
                                                 <tr >
                                                     <td><span class="buy-thumb"><i class="la la-arrow-up"></i></span>
                                                     </td>
@@ -77,14 +77,14 @@
                                                         <span class="badge bg-success">Buy</span>
                                                     </td>
                                                     <td>
-                                                        <i class="cc LTC"></i>  {{$order->currency->name}}
+                                                        <i class="cc LTC"></i>  {{$offer->order->currency->name}}
                                                     </td>
                                                     <td>
                                                         Using - Card *******8475
                                                     </td>
-                                                    <td class="text-success">{{$order->fee}} IRR </td>
-                                                    <td>{{$order->amount}}</td>
-                                                    <td><a class="btn" href="{{ route('user.order.show',['id' =>  $order->id]) }}">show</a></td>
+                                                    <td class="text-success">{{$offer->fee}} IRR </td>
+                                                    <td>{{$offer->amount}}</td>
+                                                    <td><a class="btn" href="{{ route('user.order.show',['id' =>  $offer->id]) }}">show</a></td>
 
                                                 </tr>
                                             @endif

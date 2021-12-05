@@ -19,7 +19,7 @@ class OfferController extends Controller
     public function index()
     {
         return view('panel.user.offer.index')->with([
-            'offers' => Auth::user()->offers()->get(),
+            'offers' => Auth::user()->offers()->orderBy('created_at','desc')->get(),
         ]);
     }
 

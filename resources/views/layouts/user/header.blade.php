@@ -25,7 +25,7 @@
                             <div class="profile_log dropdown">
                                 <div class="user" data-toggle="dropdown">
                                     <span class="thumb"><i class="mdi mdi-account"></i></span>
-                                    <span class="name">Carla Pascle</span>
+                                    <span class="name">{{ auth()->user()->name }}</span>
                                     <span class="arrow"><i class="la la-angle-down"></i></span>
                                 </div>
                                 <div class="dropdown-menu dropdown-menu-right">
