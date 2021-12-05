@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CheckAcceptedOrderByOffer;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Rules\CheckAcceptOffer;
 class AcceptOfferRequest extends FormRequest
@@ -24,7 +25,7 @@ class AcceptOfferRequest extends FormRequest
     public function rules()
     {
         return [
-            'offer_id' => ['required',new CheckAcceptOffer() ]
+            'offer_id' => ['required',new CheckAcceptOffer() , new CheckAcceptedOrderByOffer()]
         ];
     }
 }

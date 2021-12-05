@@ -12,7 +12,6 @@
             </ul>
         </div>
     @endif
-
     <div class="page_title">
         <div class="container">
             <div class="row">

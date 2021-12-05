@@ -4,9 +4,8 @@ namespace App\Rules;
 
 use App\Models\Offer;
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Facades\Auth;
 
-class CheckAcceptOffer implements Rule
+class CheckAcceptedOrderByOffer implements Rule
 {
     /**
      * Create a new rule instance.
@@ -27,9 +26,8 @@ class CheckAcceptOffer implements Rule
      */
     public function passes($attribute, $value)
     {
-
         $order = Offer::findOrfail($value)->order;
-        if ($order->user_id == Auth::id())
+        if ($order->is_accept == 0)
             return true;
         return false;
     }
@@ -41,6 +39,6 @@ class CheckAcceptOffer implements Rule
      */
     public function message()
     {
-        return 'فقط سازنده سفارش میتواند ان را تایید کند.';
+        return "این سفارش یک پیشنهاد فعال دارد.";
     }
 }

@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Notification;
 
 class OfferController extends Controller
 {
+
+
+    public function index()
+    {
+        return view('panel.user.offer.index')->with([
+            'offers' => Auth::user()->offers()->get(),
+        ]);
+    }
+
     public function store(OfferRequest $request)
     {
         $offer = Offer::create(array_merge($request->all(),['user_id'=>Auth::id()]));
@@ -38,6 +47,5 @@ class OfferController extends Controller
         $order->is_accept = 1;
         $order->save();
         return redirect()->back()->with('success', 'پیشنهاد شما با موفقیت تایید شد.');
-
     }
 }
