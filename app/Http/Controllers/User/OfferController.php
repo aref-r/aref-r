@@ -19,7 +19,8 @@ class OfferController extends Controller
     public function index()
     {
         return view('panel.user.offer.index')->with([
-            'offers' => Auth::user()->offers()->orderBy('created_at','desc')->get(),
+            'activeOffers' => Auth::user()->offers()->where('is_accept','!=',1)->orderBy('created_at','desc')->get(),
+            'acceptOffers' => Auth::user()->offers()->where('is_accept',1)->orderBy('created_at','desc')->get(),
         ]);
     }
 

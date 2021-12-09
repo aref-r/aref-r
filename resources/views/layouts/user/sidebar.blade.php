@@ -5,14 +5,19 @@
     <div class="menu">
         <ul>
             <li>
-                <a href="index.html">
+                <a href="/home">
                     <span><i class="mdi mdi-view-dashboard"></i></span>
                     <span class="nav-text">Home</span>
                 </a>
             </li>
-            <li><a href="{{ route('user.order.create') }}">
+            <li><a href="{{ route('user.order.index') }}">
                     <span><i class="mdi mdi-repeat"></i></span>
-                    <span class="nav-text">Exchange</span>
+                    <span class="nav-text">My Orders</span>
+                </a>
+            </li>
+            <li><a href="{{ route('user.offer.index') }}">
+                    <span><i class="mdi mdi-repeat"></i></span>
+                    <span class="nav-text">My Offers</span>
                 </a>
             </li>
             <li><a href="accounts.html">

@@ -43,8 +43,8 @@ Route::group(['prefix' => 'user','middleware' => ['auth'] ], function() {
     Route::post('offer/accept-offer', 'User\OfferController@accept_offer')->name('user.offer.accept_offer');
 
     //receipt
-    Route::get('offer/create/{order}', 'User\ReceiptController@create')->name('user.receipt.create');
-    Route::post('offer/store', 'User\ReceiptController@store')->name('user.receipt.store');
+    Route::get('receipt/create/{order}', 'User\ReceiptController@create')->name('user.receipt.create');
+    Route::post('receipt/store', 'User\ReceiptController@store')->name('user.receipt.store');
 
 
 

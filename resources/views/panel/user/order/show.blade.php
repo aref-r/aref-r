@@ -41,9 +41,14 @@
                                             <td>{{$order->currency->name}}</td>
                                         </tr>
                                         <tr>
+                                            <td>Type</td>
+                                            <td>{{$order->type}}</td>
+                                        </tr>
+                                        <tr>
                                             <td>Fee</td>
                                             <td>{{$order->fee}}</td>
                                         </tr>
+
                                         <tr>
                                             <td>Amount</td>
                                             <td>{{$order->amount}}</td>
@@ -52,7 +57,6 @@
                                             <td>Total</td>
                                             <td>{{$order->fee * $order->amount}}</td>
                                         </tr>
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -61,6 +65,7 @@
                     </div>
                 </div>
             </div>
+            @if($order->user_id == auth()->id())
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12">
                     <div class="card">
@@ -101,6 +106,7 @@
                     </div>
                 </div>
             </div>
+                @endif
         </div>
     </div>
 @endsection
