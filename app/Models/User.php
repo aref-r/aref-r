@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'lang'
     ];
 
     /**
@@ -54,5 +55,18 @@ class User extends Authenticatable
         return  $this->hasMany(Offer::class,'user_id');
     }
 
+    public function setting()
+    {
+        return $this->hasOne(Setting::class, 'user_id');
+    }
 
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class, 'user_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id');
+    }
 }

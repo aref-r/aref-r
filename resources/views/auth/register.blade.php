@@ -11,8 +11,8 @@
     <!-- Custom Stylesheet -->
 
 
-    <link rel="stylesheet" href="./css/style.css">
-</head>
+    <link rel="stylesheet" href="{{ asset('/css/style-en.css') }}">
+    </head>
 
 <body>
 

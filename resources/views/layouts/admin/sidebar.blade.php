@@ -25,6 +25,11 @@
                     <span class="nav-text">Setting</span>
                 </a>
             </li>
+            <li><a href="settings.html">
+                    <span><i class="mdi mdi-message-bulleted"></i></span>
+                    <span class="nav-text">messages</span>
+                </a>
+            </li>
         </ul>
     </div>
 
