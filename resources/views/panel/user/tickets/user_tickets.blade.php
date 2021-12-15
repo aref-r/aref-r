@@ -3,14 +3,19 @@
 
 @section('content')
 
-
-    @if (\Session::has('success'))
-        <div class="alert alert-success">
-            <ul>
-                <li>{!! \Session::get('success') !!}</li>
-            </ul>
-        </div>
-    @endif
+@if(\Session::has('success'))
+@javascript('success', session('success'))
+@javascript('type', 'success')
+@elseif(\Session::has('info'))
+@javascript('info', session('info'))
+@javascript('type', 'info')
+@elseif(\Session::has('warning'))
+@javascript('warning', session('warning'))
+@javascript('type', 'warning')
+@elseif(\Session::has('error'))
+@javascript('error', session('error'))
+@javascript('type', 'error')
+@endif
 
     <div class="page_title">
         <div class="container">
@@ -26,14 +31,6 @@
         </div>
     </div>
 
-
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
-
-
     <div class="content-body">
         <div class="container">
             <div class="row">
@@ -45,7 +42,8 @@
                                     <li class="nav-item"><a class="nav-link active" data-toggle="tab"
                                             href="#list">tickets list</a>
                                     </li>
-                                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#create">new
+                                    <li class="nav-item"><a class="nav-link" data-toggle="tab"
+                                            href="#create">new
                                             ticket</a>
                                     </li>
                                 </ul>
@@ -54,7 +52,7 @@
                                         @if ($tickets->isEmpty())
                                             <p>You have not created any tickets.</p>
                                         @else
-                                            <table class="table">
+                                            <table class="table table-tickets">
                                                 <thead>
                                                     <tr>
                                                         <th>title</th>
@@ -65,45 +63,56 @@
                                                 </thead>
                                                 <tbody>
                                                     @foreach ($tickets as $ticket)
-                                                        <tr>
-                                                            <td>
-                                                                <a
-                                                                    href="{{ route('user.ticket.show', $ticket->id) }}">
-                                                                    #{{ $ticket->ticket_id }} - {{ $ticket->title }}
-                                                                </a>
-                                                            </td>
-                                                            <td>
-                                                                @if ($ticket->status === 'Open')
-                                                                    <span
-                                                                        class="label label-success">{{ $ticket->status }}</span>
-                                                                @else
-                                                                    <span
-                                                                        class="label label-danger">{{ $ticket->status }}</span>
-                                                                @endif
-                                                            </td>
-                                                            <td>
-                                                                @switch($ticket->priority)
-                                                                    @case(0)
-                                                                        Low
-                                                                        @break
-                                                                    @case(1)
-                                                                        Medium
-                                                                        @break
-                                                                    @case(2)
-                                                                        High
-                                                                        @break
-                                                                    @default
-                                                                        unexpected
-                                                                @endswitch
-                                                                {{$ticket->priority}}
-                                                            </td>
-                                                            <td>{{ $ticket->updated_at }}</td>
-                                                        </tr>
+                                                        @foreach (Auth::user()->unreadnotifications as $notification)
+                                                            @if ($notification->data['ticket_id'] == $ticket->id)
+                                                                <tr>
+                                                            @break
+                                                        @endif
                                                     @endforeach
-                                                </tbody>
-                                            </table>
+                                                    @isset($notification)
+                                                        @if ($notification->data['ticket_id'] != $ticket->id)
+                                                            <tr class="ticket-read">
+                                                        @endif
+                                                    @else
+                                                        <tr class="ticket-read">
+                                                        @endisset
 
-                                            {{ $tickets->links() }}
+                                                        <td>
+                                                            <a href="{{ route('user.ticket.show', $ticket->id) }}">
+                                                                #{{ $ticket->ticket_id }} -
+                                                                {{ $ticket->title }}
+                                                            </a>
+                                                        </td>
+                                                        <td>
+                                                            @if ($ticket->status === 'Open')
+                                                                <span
+                                                                    class="label label-success">{{ $ticket->status }}</span>
+                                                            @else
+                                                                <span
+                                                                    class="label label-danger">{{ $ticket->status }}</span>
+                                                            @endif
+                                                        </td>
+                                                        <td>
+                                                            @switch($ticket->priority)
+                                                                @case(0)
+                                                                    Low
+                                                                @break
+                                                                @case(1)
+                                                                    Medium
+                                                                @break
+                                                                @case(2)
+                                                                    High
+                                                                @break
+                                                                @default
+                                                                    unexpected
+                                                            @endswitch
+                                                            {{ $ticket->priority }}
+                                                        </td>
+                                                        <td>{{ $ticket->updated_at->diffForHumans() }}</td>
+                                                    </tr>
+                                        @endforeach
+                                        </tbody>
+                                        </table>
                                         @endif
                                     </div>
 
@@ -134,9 +143,9 @@
 
                                                 <div class="col-md-12">
                                                     <select id="priority" type="" class="form-control" name="priority">
-                                                        <option value="1" selected>Low</option>
-                                                        <option value="2">Medium</option>
-                                                        <option value="3">High</option>
+                                                        <option value="Low" selected>Low</option>
+                                                        <option value="Medium">Medium</option>
+                                                        <option value="High">High</option>
                                                     </select>
 
                                                     @if ($errors->has('priority'))
@@ -148,7 +157,8 @@
                                             </div>
                                             <br>
                                             <div class="form-group @error('description')  is-invalid @enderror">
-                                                <label for="description" class="col-md-4 control-label">description :</label>
+                                                <label for="description" class="col-md-4 control-label">description
+                                                    :</label>
 
                                                 <div class="col-md-12">
                                                     <textarea rows="10" id="description" class="form-control"
@@ -183,6 +193,6 @@
         </div>
     </div>
 
-   
+
 
 @endsection

@@ -4,9 +4,11 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ticket;
-use App\Http\Requests\StoreticketRequest;
 use App\Http\Requests\UpdateticketRequest;
+use App\Mail\PaypoolerMails;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\User\TicketRequest;
+use Illuminate\Support\Facades\Mail;
 
 class TicketController extends Controller
 {
@@ -19,9 +21,9 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::orderBy('id', 'DESC')->paginate(10);
+        $tickets = Ticket::orderBy('updated_at', 'DESC')->get();
 
-        return view('panel.admin.tickets.index', compact('tickets'));
+        return view('panel.admin.tickets.index')->with(['tickets' => $tickets]);
     }
 
     /**
@@ -40,13 +42,8 @@ class TicketController extends Controller
      * @param  \App\Http\Requests\StoreticketRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreticketRequest $request)
+    public function store(TicketRequest $request)
     {
-        $this->validate($request, [
-            'title'     => 'required',
-            'priority'  => 'required',
-            'description'   => 'required'
-        ]);
 
         $ticket = new Ticket([
             'title'     => $request->input('title'),
@@ -59,9 +56,9 @@ class TicketController extends Controller
 
         $ticket->save();
 
-        // $mailer->sendTicketInformation(Auth::user(), $ticket);
+        Mail::to(Auth::user()->email)->send(new PaypoolerMails('emails.ticket_info', "[Ticket ID: $ticket->ticket_id] $ticket->title", Auth::user(), $ticket));
 
-        return redirect()->back()->with("status", "تیکت شما با شناسه :$ticket->ticket_id با موفقیت ارسال شد");
+        return redirect()->back()->with('success','your ticket was  sent successfuly');
     }
 
     /**
@@ -76,9 +73,31 @@ class TicketController extends Controller
 
         $comments = $ticket->comments;
 
-        return view('panel.user.tickets.show', compact('ticket', 'comments'));
+        foreach (Auth::user()->unreadnotifications as $notification) {
+            if ($notification->data['ticket_id'] == $ticket->id) {
+                $notification->markAsRead();
+            }
+        }
+        return view('panel.user.tickets.show')->with(['ticket' => $ticket, 'comments' => $comments]);
     }
 
+    public function showForAdmin(ticket $ticket)
+    {
+        $ticket = Ticket::where('ticket_id', $ticket->ticket_id)->firstOrFail();
+
+        $comments = $ticket->comments;
+
+        return view('panel.admin.tickets.show')->with(['ticket' => $ticket, 'comments' => $comments]);
+    }
+
+    public function showByTicket_Id($ticket_id)
+    {
+        $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
+
+        $comments = $ticket->comments;
+
+        return view('panel.user.tickets.show')->with(['ticket' => $ticket, 'comments' => $comments]);;
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -115,9 +134,9 @@ class TicketController extends Controller
 
     public function userTickets()
     {
-        $tickets = Ticket::where('user_id', Auth::user()->id)->paginate(10);
-
-        return view('panel.user.tickets.user_tickets', compact('tickets'));
+        $tickets = Ticket::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->get();
+ 
+        return view('panel.user.tickets.user_tickets')->with(['tickets' => $tickets]);
     }
 
     public function close($ticket_id)
@@ -128,22 +147,8 @@ class TicketController extends Controller
 
         $ticket->save();
 
-        $ticketOwner = $ticket->user;
+        Mail::to($ticket->user->email)->send(new PaypoolerMails('emails.ticket_status', "CLOSE: $ticket->title (Ticket ID: $ticket->ticket_id)", $ticket->user, $ticket));
 
-        // $mailer->sendTicketStatusNotification($ticketOwner, $ticket);
-
-        return redirect()->back()->with("status", "The ticket has been closed.");
-    }
-    public function tempDashboard()
-    {
-        return view('panel.user.dashboard');
-    }
-    public function tempHistory()
-    {
-        return view('panel.user.history');
-    }
-    public function tempAccount()
-    {
-        return view('panel.user.account');
+        return redirect()->back()->with("success", "The ticket has been closed.");
     }
 }

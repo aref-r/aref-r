@@ -2,6 +2,11 @@
 <script src="{{ asset('/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('/vendor/toastr/toastr.min.js') }}"></script>
 
+{{-- 
+<script>
+    toastr.success({{ session('seccess') }})
+</script> --}}
+
 @if (Auth::user()->lang == 'en')
     <script src="{{ asset('/vendor/toastr/toastr-init.js') }}"></script>
 @elseif(Auth::user()->lang == 'fa')

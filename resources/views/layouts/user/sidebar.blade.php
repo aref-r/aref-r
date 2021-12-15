@@ -1,8 +1,8 @@
 @if (Auth::user()->lang == 'en')
     <div class="sidebar">
-        <a class="brand-logo" href="index.html">
+        <a class="brand-logo" href="{{ route('user.dashboard') }}">
             <img src="{{ asset('/images/logo.png') }}" alt="">
-            <span>Pay Pooler </span></a>
+        </a>
         <div class="menu">
             <ul>
                 <li>
@@ -26,7 +26,7 @@
                         <span class="nav-text">Account</span>
                     </a>
                 </li>
-                <li><a href="{{ route('user.setting.index') }}">
+                <li><a href="{{ route('user.account.index') }}">
                         <span><i class="mdi mdi-settings"></i></span>
                         <span class="nav-text">Setting</span>
                     </a>
@@ -34,6 +34,11 @@
                 <li><a href="{{ route('user.ticket.index') }}">
                         <span><i class="mdi mdi-ticket"></i></span>
                         <span class="nav-text">support</span>
+                        @if (Auth::user()->unreadnotifications->count() > 0)
+                            <span class="bubble">
+                                {{ Auth::user()->unreadnotifications->count() }}
+                            </span>
+                        @endif
                     </a>
                 </li>
             </ul>
@@ -87,7 +92,7 @@
                         <span class="nav-text">حساب من</span>
                     </a>
                 </li>
-                <li><a href="{{ route('user.setting.index') }}">
+                <li><a href="{{ route('user.account.index') }}">
                         <span><i class="mdi mdi-settings"></i></span>
                         <span class="nav-text">تنظیمات</span>
                     </a>

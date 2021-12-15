@@ -17,13 +17,13 @@
     </div>
 
     <div id="main-wrapper">
-         @include('layouts.user.header')
-         @include('layouts.user.sidebar')
+         @include('layouts.admin.header')
+         @include('layouts.admin.sidebar')
 
                    @yield('content')
-        @include('layouts.user.footer')
+        @include('layouts.admin.footer')
     </div>
-        @include('layouts.user.footer-script')
+        @include('layouts.admin.footer-script')
 
     </body>
 </html>

@@ -229,6 +229,7 @@ figure {
 img {
     vertical-align: middle;
     border-style: none;
+    max-width: 250px;
 }
 
 svg {
@@ -10242,6 +10243,7 @@ body.dashboard:before {
     background: #5e37ff;
 }
 
+
 #main-wrapper {
     opacity: 0;
     transition: all 0.25s ease-in;
@@ -10865,7 +10867,7 @@ button.navbar-toggler {
     align-items: center;
 }
 .navbar-brand img {
-    max-width: 30px;
+    max-width: 200px;
 }
 .navbar-brand span {
     font-weight: 700;
@@ -11114,7 +11116,7 @@ button.navbar-toggler {
     }
 }
 .sidebar .brand-logo img {
-    width: 30px;
+    width: 150px;
     margin-bottom: 10px;
 }
 .sidebar .brand-logo span {
@@ -12660,5 +12662,19 @@ button,
     padding: 10px;
     border-radius: 15px;
 }
-
+.bubble {
+    border-radius: 10%;
+    height: 16px;
+    width: 16px;
+    background-color: rgba(226, 0, 0, 0.77);
+    color: white;
+    text-align: center;
+    position: relative;
+    top: 0px;
+    float: right;
+    right: -3px;
+  }
+  tr.ticket-read td{
+    opacity: 0.5;
+  }
 /*# sourceMappingURL=style.css.map */

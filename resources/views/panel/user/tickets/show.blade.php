@@ -3,14 +3,19 @@
 
 @section('content')
 
-
-    @if (\Session::has('success'))
-        <div class="alert alert-success">
-            <ul>
-                <li>{!! \Session::get('success') !!}</li>
-            </ul>
-        </div>
-    @endif
+@if(\Session::has('success'))
+@javascript('success', session('success'))
+@javascript('type', 'success')
+@elseif(\Session::has('info'))
+@javascript('info', session('info'))
+@javascript('type', 'info')
+@elseif(\Session::has('warning'))
+@javascript('warning', session('warning'))
+@javascript('type', 'warning')
+@elseif(\Session::has('error'))
+@javascript('error', session('error'))
+@javascript('type', 'error')
+@endif
 
     <div class="page_title">
         <div class="container">
@@ -32,8 +37,7 @@
             {{ session('status') }}
         </div>
     @endif
-
-
+    
     <div class="content-body">
         <div class="container">
             <div class="row">
@@ -63,7 +67,9 @@
                                     <div class="comments">
                                         @foreach ($comments as $comment)
                                             <div class="panel panel-@if ($ticket->user->id === $comment->user_id) {{ 'default' }}@else{{ 'success' }}@endif">
-                                                <div class="panel panel-heading">
+                                                <div class="panel panel-heading"><strong>
+                                                        {{ $comment->user->name }}
+                                                    </strong>
                                                     {{ $comment->user->name }}
                                                     <span
                                                         class="pull-right">{{ $comment->created_at->diffForHumans() }}</span>
@@ -76,36 +82,35 @@
                                             <hr>
                                         @endforeach
                                     </div>
-
-                                    <hr>
-                                    @if ($ticket->status === 'Open')
-                                        <div class="comment-form">
-                                            <form action="{{ route('user.comment.store') }}" method="POST"
-                                                class="form">
-                                                @csrf
-
-                                                <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
-
-                                                <div class="form-group @error('comment')  is-invalid @enderror">
-                                                    <textarea rows="10" id="comment" class="form-control"
-                                                        name="comment"></textarea>
-
-                                                    @error('comment'))
-                                                        <span class="help-block">
-                                                            <strong>{{ $errors->first('comment') }}</strong>
-                                                        </span>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-primary"
-                                                        style="margin: 30px">Submit</button>
-                                                </div>
-                                            </form>
-                                        </div>
-                                    @else
-                                        <p style="color:red">the topic was closed</p>
+                                    @if ($ticket->status == 'Closed')
+                                        <span><strong>this ticket is closed</strong> </span>
                                     @endif
+                                    <hr>
+                                    <div class="comment-form">
+                                        <form action="{{ route('user.comment.store') }}" method="POST"
+                                            class="form">
+                                            @csrf
+
+                                            <input type="hidden" name="ticket_id" value="{{ $ticket->id }}">
+
+                                            <div class="form-group @error('comment')  is-invalid @enderror">
+                                                <textarea rows="10" id="comment" class="form-control"
+                                                    name="comment"></textarea>
+
+                                                @error('comment'))
+                                                    <span class="help-block">
+                                                        <strong>{{ $errors->first('comment') }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="form-group">
+                                                <button type="submit" class="btn btn-primary"
+                                                    style="margin: 30px">Submit</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
                                 </div>
                             </div>
 

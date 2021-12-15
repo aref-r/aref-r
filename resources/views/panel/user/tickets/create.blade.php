@@ -3,14 +3,19 @@
 
 @section('content')
 
-
-    @if (\Session::has('success'))
-        <div class="alert alert-success">
-            <ul>
-                <li>{!! \Session::get('success') !!}</li>
-            </ul>
-        </div>
-    @endif
+@if(\Session::has('success'))
+@javascript('success', session('success'))
+@javascript('type', 'success')
+@elseif(\Session::has('info'))
+@javascript('info', session('info'))
+@javascript('type', 'info')
+@elseif(\Session::has('warning'))
+@javascript('warning', session('warning'))
+@javascript('type', 'warning')
+@elseif(\Session::has('error'))
+@javascript('error', session('error'))
+@javascript('type', 'error')
+@endif
 
     <div class="page_title">
         <div class="container">
@@ -25,14 +30,6 @@
             </div>
         </div>
     </div>
-
-
-    @if (session('status'))
-        <div class="alert alert-success">
-            {{ session('status') }}
-        </div>
-    @endif
-
 
     <div class="content-body">
         <div class="container">
@@ -134,9 +131,9 @@
 
                                                 <div class="col-md-6">
                                                     <select id="priority" type="" class="form-control" name="priority">
-                                                        <option value="1" selected>Low</option>
-                                                        <option value="2">Medium</option>
-                                                        <option value="3">High</option>
+                                                        <option value="Low" selected>Low</option>
+                                                        <option value="Medium">Medium</option>
+                                                        <option value="High">High</option>
                                                     </select>
 
                                                     @if ($errors->has('priority'))

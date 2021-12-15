@@ -1,24 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>تیکت پشتیبانی</title>
-</head>
-<body>
-    <p>
-        {{ $comment->comment }}
-    </p>
+@component('mail::message')
+# support ticket
+<h3>paypooler supprot team</h3>
+<hr>
+<br>
+<p>you have a new reply to your ticket</p>
+<br>
+<p>
+@isset($case){{ $case->comment }}@endisset
+</p>
+@isset($user)<p>answer to : {{ $user->name }}</p>@endisset
 
-    ---
-    <p>پاسخ به: {{ $user->name }}</p>
+@isset($case)<p>title : {{ $case->ticket->title }}</p>@endisset
+@isset($case)<p>ticket id : {{ $case->ticket->description }}</p>@endisset
+<br>
+<p>you can see your ticket in linke below : </p>
+@isset($case)
+@component('mail::button', ['url' => route('user.ticket.showByTicketId', $case->ticket->ticket_id)])
+    your ticket
+@endcomponent
+@endisset
 
-    <p>عنوان: {{ $ticket->title }}</p>
-    <p>شناسه: {{ $ticket->ticket_id }}</p>
-    <p>وضعیت: {{ $ticket->status }}</p>
-
-    <p>
-        میتوانید تیکت را در این لینک مشاهده کنید {{ route('user.ticket.show',$ticket->ticket_id) }}
-    </p>
-
-</body>
-</html>
+Thanks,<br>
+{{ config('app.name') }}
+@endcomponent

@@ -126,47 +126,38 @@
                                         <h4 class="card-title">Personal Information</h4>
                                     </div>
                                     <div class="card-body">
-                                        <form method="post" name="myform" class="personal_validate" action="{{route('user.setting.store')}}">
+                                        <form method="post" name="myform" class="personal_validate" action="{{route('user.account.update')}}">
                                             @csrf
                                             <div class="row">
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">Your Name</label>
-                                                    <input type="text" class="form-control" placeholder="Carla Pascle" value="{{$userInfo->user->name}}"
-                                                        name="username">
+                                                    <input type="text" class="form-control" placeholder="Carla Pascle" value="@isset($userInfo){{$userInfo->name}}@endisset"
+                                                        name="name">
                                                 </div>
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">Email</label>
                                                     <input type="email" class="form-control"
-                                                        placeholder="Hello@example.com" name="email" value="{{$userInfo->user->email}}"">
-                                                </div>
-                                                <div class="mb-3 col-xl-6">
-                                                    <label class="me-sm-2">Date of birth</label>
-                                                    <input type="text" class="form-control" value="{{$userInfo->DOB}}" name="DOB"
-                                                        <script>
-                                                            var CurrentYear = new Date().getFullYear()
-                                                            document.write(CurrentYear)
-                                                        </script>" id="datepicker"
-                                                        autocomplete="off" name="dob">
+                                                        placeholder="Hello@example.com" name="email" value="@isset($userInfo){{$userInfo->email}}@endisset">
                                                 </div>
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">Present Address</label>
                                                     <input type="text" class="form-control"
-                                                        placeholder="56, Old Street, Brooklyn" name="present_address" value="{{$userInfo->present_address}}">
+                                                        placeholder="56, Old Street, Brooklyn" name="present_address" value="@isset($userInfo){{$userInfo->present_address}}@endisset">
                                                 </div>
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">Permanent Address</label>
                                                     <input type="text" class="form-control"
-                                                        placeholder="123, Central Square, Brooklyn" name="permanent_address" value="{{$userInfo->permanent_address}}">
+                                                        placeholder="123, Central Square, Brooklyn" name="permanent_address" value="@isset($userInfo){{$userInfo->permanent_address}}@endisset">
                                                 </div>
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">City</label>
                                                     <input type="text" class="form-control" placeholder="New York"
-                                                        name="city" value="{{$userInfo->city}}">
+                                                        name="city" value="@isset($userInfo){{$userInfo->city}}@endisset">
                                                 </div>
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">Postal Code</label>
                                                     <input type="text" class="form-control" placeholder="25481"
-                                                        name="postal_code" value="{{$userInfo->postal_code}}">
+                                                        name="postal_code" value="@isset($userInfo){{$userInfo->postal_code}}@endisset">
                                                 </div>
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">language</label>
@@ -186,7 +177,7 @@
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">Country</label>
                                                     <select class="form-control" name="country">
-                                                        <option value="{{$userInfo->country}}" {{'selected'}}>{{$userInfo->country}}</option>
+                                                        <option value="@isset($userInfo){{$userInfo->country}}" {{'selected'}}>{{$userInfo->country}}@endisset</option>
                                                         <option value="">Select</option>
                                                         <option value="Afghanistan">Afghanistan</option>
                                                         <option value="Åland Islands">Åland Islands</option>
@@ -606,47 +597,38 @@
                                         <h4 class="card-title">Personal Information</h4>
                                     </div>
                                     <div class="card-body">
-                                        <form method="post" name="myform" class="personal_validate" action="{{route('user.setting.store')}}">
-                                            @csrf
+                                        <form method="post" name="myform" class="personal_validate" action="{{route('user.account.update')}}">
+                                            @csrf 
                                             <div class="row">
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">نام و نام خانوادگی</label>
                                                     <input type="text" class="form-control" placeholder="Carla Pascle"
-                                                        name="username" value="{{$userInfo->user->name}}">
+                                                        name="name" value="@isset($userInfo){{$userInfo->name}}@endisset">
                                                 </div>
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">ایمیل</label>
                                                     <input type="email" class="form-control"
-                                                        placeholder="Hello@example.com" name="email" value="{{$userInfo->user->email}}">
-                                                </div>
-                                                <div class="mb-3 col-xl-6">
-                                                    <label class="me-sm-2">تاریخ تولد</label>
-                                                    <input type="text" class="form-control" value="{{$userInfo->DOB}}" name="DOB"
-                                                        <script>
-                                                            var CurrentYear = new Date().getFullYear()
-                                                            document.write(CurrentYear)
-                                                        </script>" id="datepicker"
-                                                        autocomplete="off" name="dob">
+                                                        placeholder="Hello@example.com" name="email" value="@isset($userInfo){{$userInfo->email}}@endisset">
                                                 </div>
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">آدرس کنونی</label>
                                                     <input type="text" class="form-control"
-                                                        placeholder="56, Old Street, Brooklyn" name="present_address" value="{{$userInfo->present_address}}">
+                                                        placeholder="56, Old Street, Brooklyn" name="present_address" value="@isset($userInfo){{$userInfo->present_address}}@endisset">
                                                 </div>
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">آدرس ثابت</label>
                                                     <input type="text" class="form-control"
-                                                        placeholder="123, Central Square, Brooklyn" name="permanent_address" value="{{$userInfo->permanent_address}}">
+                                                        placeholder="123, Central Square, Brooklyn" name="permanent_address" value="@isset($userInfo){{$userInfo->permanent_address}}@endisset">
                                                 </div>
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">شهر</label>
                                                     <input type="text" class="form-control" placeholder="New York"
-                                                        name="city" value="{{$userInfo->city}}">
+                                                        name="city" value="@isset($userInfo){{$userInfo->city}}@endisset">
                                                 </div>
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">کد پستی</label>
                                                     <input type="text" class="form-control" placeholder="25481"
-                                                        name="postal_code" value="{{$userInfo->postal_code}}">
+                                                        name="postal_code" value="@isset($userInfo){{$userInfo->postal_code}}@endisset">
                                                 </div>
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">زبان</label>
@@ -666,7 +648,7 @@
                                                 <div class="mb-3 col-xl-6">
                                                     <label class="me-sm-2">کشور</label>
                                                     <select class="form-control" name="country">
-                                                        <option value="{{$userInfo->country}}" {{'selected'}}>{{$userInfo->country}}</option>
+                                                        <option value="@isset($userInfo){{$userInfo->country}}" {{'selected'}}>{{$userInfo->country}}@endisset</option>
                                                         <option value="">Select</option>
                                                         <option value="Afghanistan">Afghanistan</option>
                                                         <option value="Åland Islands">Åland Islands</option>

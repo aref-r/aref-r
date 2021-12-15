@@ -17,7 +17,7 @@ class CreateTicketsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            $table->tinyInteger('Priority');
+            $table->string('Priority');
             $table->unsignedBigInteger('user_id');
             $table->string('ticket_id')->unique();
             $table->string('status');

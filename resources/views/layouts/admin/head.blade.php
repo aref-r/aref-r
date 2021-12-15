@@ -5,4 +5,4 @@
 @yield('css')
 
 <link rel="stylesheet" href="./vendor/toastr/toastr.min.css">
-<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="./css/style-en.css">

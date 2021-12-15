@@ -22,7 +22,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'lang'
+        'lang',
+        'profile_photo',
+        'present_address',
+        'permanent_address',
+        'city',
+        'postal_code',
+        'country',
     ];
 
     /**
@@ -47,17 +53,12 @@ class User extends Authenticatable
 
     public function orders()
     {
-        return $this->hasMany(Order::class,'user_id');
+        return $this->hasMany(Order::class, 'user_id');
     }
 
     public function offers()
     {
-        return  $this->hasMany(Offer::class,'user_id');
-    }
-
-    public function setting()
-    {
-        return $this->hasOne(Setting::class, 'user_id');
+        return  $this->hasMany(Offer::class, 'user_id');
     }
 
     public function tickets()

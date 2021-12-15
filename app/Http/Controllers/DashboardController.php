@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Ticket;
 use App\Models\Currency;
 use App\Models\Order;
 use App\Models\User;
@@ -31,7 +32,8 @@ class DashboardController extends Controller
 
     public function admin()
     {
-        return view('panel.admin.dashboard');
+        $openTickets = Ticket::where('status','Open')->count();
+        return view('panel.admin.dashboard')->with(['openTickets' => $openTickets]);
     }
 
 }

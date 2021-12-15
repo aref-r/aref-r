@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function(){
+    return view('panel.user.landing-en');
+})->name('home');
+Route::get('/persian', function(){
+    return view('panel.user.landing-fa');
+})->name('home');
 
 
 Route::group(['prefix' => 'home', 'middleware' => ['auth']], function () {
@@ -42,18 +49,21 @@ Route::group(['prefix' => 'user','middleware' => ['auth'] ], function() {
     Route::get('offer/index', 'User\OfferController@index')->name('user.offer.index');
     Route::post('offer/accept-offer', 'User\OfferController@accept_offer')->name('user.offer.accept_offer');
 
+    // user
+    Route::get('offer/create/{order}', 'User\userController@store')->name('user.baseInformation.store');
+
     //receipt
     Route::get('offer/create/{order}', 'User\ReceiptController@create')->name('user.receipt.create');
     Route::post('offer/store', 'User\ReceiptController@store')->name('user.receipt.store');
 
     // dashboard + history + account
-    Route::get('dashboard', 'User\TicketController@tempDashboard')->name('user.dashboard');
-    Route::get('history', 'User\TicketController@tempHistory')->name('user.history');
-    Route::get('account', 'User\TicketController@tempAccount')->name('user.account');
+    Route::get('dashboard', function(){ return view('panel.user.dashboard');})->name('user.dashboard');
+    Route::get('history', function(){ return view('panel.user.history');})->name('user.history');
+    Route::get('account', function(){ return view('panel.user.account');})->name('user.account');
 
-    // setting
-    Route::get('setting', 'User\SettingController@index')->name('user.setting.index');
-    Route::post('setting/store', 'User\SettingController@store')->name('user.setting.store');
+    // Account
+    Route::get('setting', 'User\UserController@index')->name('user.account.index');
+    Route::post('setting/update', 'User\UserController@update')->name('user.account.update');
 
 });
 
@@ -64,15 +74,16 @@ Route::group(['prefix' => 'ticket','middleware' => ['auth']  ], function(){
     Route::post('new', 'User\TicketController@store')->name('user.ticket.store');
     Route::get('me', 'User\TicketController@userTickets')->name('user.ticket.index');
     Route::get('case/{ticket}', 'User\TicketController@show')->name('user.ticket.show');
+    Route::get('find/{ticket}', 'User\TicketController@showByTicket_Id')->name('user.ticket.showByTicketId');
 
     // comments
-    Route::post('comment', 'User\CommentsController@postComment')->name('user.comment.store');
-
+    Route::post('comment', 'User\CommentController@store')->name('user.comment.store');
 });
+
+
     // admin tickets visit
-Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function() {
-    Route::get('tickets', 'User\TicketController@index')->name('admin.tickets.index');
+Route::group(['prefix' => 'admin', 'middleware' => ['auth']  ], function() {
+    Route::get('show/{ticket}', 'User\TicketController@showForAdmin')->name('admin.ticket.show');
+    Route::get('tickets', 'User\TicketController@index')->name('admin.ticket.index');
     Route::post('close_ticket/{ticket_id}', 'User\TicketController@close')->name('admin.close.ticket');
 });
-
-

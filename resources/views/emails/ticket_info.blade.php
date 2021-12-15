@@ -1,24 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>تیم پشتیبانی سایت</title>
-</head>
-<body>
-    <p>
-        سپاس از شما {{ ucfirst($user->name) }} برای ارتیاط با تیم پشتیبانی ما.
-         یک تیکت برای شما باز شد.
-          پاسخ تیکت نیز از طریق ایمیل به شما اطلاع داده خواهد شد. 
-          جزئیات تیکت شما به شرح زیر است:
-    </p>
+@component('mail::message')
+# support ticket
 
-    <p>عنوان: {{ $ticket->title }}</p>
-    <p>اولویت: {{ $ticket->priority }}</p>
-    <p>وضعیت: {{ $ticket->status }}</p>
+<h3>paypooler supprot team</h3><hr>
+<br>
+<p>your ticket was sent</p>
+<br>
+<p>answer to : {{ $user->name }}</p>
+<p>thanks you @isset($user){{ ucfirst($user->name) }}@endisset for contacting us,
+a ticket is open with these detail:</p>
+<hr>
+<p>title : @isset($case){{ $case->title }}@endisset</p>
+<p><span> priority: @isset($case){{ $case->priority }}@endisset </span> <span> @isset($case){{ $case->status }}@endisset</span></p>
+<p>title : @isset($case){{ $case->description }}@endisset</p>
 
-    <p>
-        میتوانید تیکت را در این لینک ببینید {{ route('user.ticket.show',$ticket->ticket_id) }}
-    </p>
+<p>you can see your ticket in linke below : </p>
+@component('mail::button', ['url' => route("user.ticket.showByTicketId",$case->ticket_id)])
+your ticket
+@endcomponent
 
-</body>
-</html>
+Thanks,<br>
+{{ config('app.name') }}
+@endcomponent
