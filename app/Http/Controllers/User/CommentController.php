@@ -9,17 +9,15 @@ use App\Models\Comment;
 use App\Mail\PaypoolerMails;
 use Illuminate\Support\Facades\Mail;
 use App\Notifications\TicketComment;
+use App\Http\Requests\User\CommentRequest;
+
 use Carbon\Carbon;
 
 class CommentController extends Controller
 {
     
-    public function store(Request $request)
+    public function store(CommentRequest $request)
     {
-        $this->validate($request, [
-            'comment'   => 'required'
-        ]);
-
         $comment = new Comment([
             'ticket_id' => $request->ticket_id,
             'user_id'    => Auth::user()->id,

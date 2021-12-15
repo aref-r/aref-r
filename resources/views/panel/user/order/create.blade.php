@@ -3,7 +3,22 @@
 
 @section('content')
 
+    @if (\Session::has('success'))
+        @javascript('success', session('success'))
+        @javascript('type', 'success')
+    @elseif(\Session::has('info'))
+        @javascript('info', session('info'))
+        @javascript('type', 'info')
+    @elseif(\Session::has('warning'))
+        @javascript('warning', session('warning'))
+        @javascript('type', 'warning')
+    @elseif(\Session::has('error'))
+        @javascript('error', session('error'))
+        @javascript('type', 'error')
+    @endif
+
     @if (Auth::user()->lang == 'en')
+
         <div class="page_title">
             <div class="container">
                 <div class="row">
@@ -35,7 +50,8 @@
                                     </ul>
                                     <div class="tab-content tab-content-default">
                                         <div class="tab-pane fade show active" id="buy" role="tabpanel">
-                                            <form method="post" name="myform" class="currency_validate">
+                                            <form method="post" name="myform" class="currency_validate" action="{{route('user.order.store')}}">
+                                                @csrf
                                                 <div class="mb-3">
                                                     <label class="me-sm-2">Currency</label>
                                                     <div class="input-group mb-3">
@@ -43,45 +59,52 @@
                                                             <label class="input-group-text"><i
                                                                     class="cc BTC-alt"></i></label>
                                                         </div>
-                                                        <select name='currency' class="form-control">
-                                                            <option value="">Select</option>
-                                                            <option value="bitcoin">Bitcoin</option>
-                                                            <option value="litecoin">Litecoin</option>
+                                                        <select name='currency_id' class="form-control">
+                                                            @foreach($currencies as $currency)
+                                                            <option value="{{$currency->id}}">{{$currency->name}}</option>
+                                                            @endforeach
                                                         </select>
                                                     </div>
                                                 </div>
 
                                                 <div class="mb-3">
-                                                    <label class="me-sm-2">Payment Method</label>
+                                                    <label class="me-sm-2">Amount</label>
                                                     <div class="input-group mb-3">
                                                         <div class="input-group-prepend">
                                                             <label class="input-group-text"><i
                                                                     class="fa fa-bank"></i></label>
                                                         </div>
-                                                        <select class="form-control" name="method">
-                                                            <option value="">Select</option>
-                                                            <option value="bank">Bank of America ********45845</option>
-                                                            <option value="master">Master Card ***********5458</option>
-                                                        </select>
+                                                        <input type="number" name="amount" class="form-control"
+                                                            placeholder="0.0214 BTC">
                                                     </div>
                                                 </div>
-
                                                 <div class="mb-3">
-                                                    <label class="me-sm-2">Enter your amount</label>
-                                                    <div class="input-group">
-                                                        <input type="text" name="currency_amount" class="form-control"
+                                                    <label class="me-sm-2">Fee</label>
+                                                    <div class="input-group mb-3">
+                                                        <div class="input-group-prepend">
+                                                            <label class="input-group-text"><i
+                                                                    class="fa fa-bank"></i></label>
+                                                        </div>
+                                                        <input type="number" name="fee" class="form-control"
                                                             placeholder="0.0214 BTC">
-                                                        <input type="text" name="usd_amount" class="form-control"
-                                                            placeholder="125.00 USD">
                                                     </div>
+                                                </div>
+                                                <div class="row d-flex justify-content-between mt-4 mb-2">
+                                                    <div class="mb-3 mb-0">
+                                                        <label class="toggle">
+                                                            <input class="toggle-checkbox" type="checkbox" name="calculate">
+                                                            <div class="toggle-switch"></div>
+                                                            <span class="toggle-label">Calculated based on the price of the day </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-3">
                                                     <div class="d-flex justify-content-between mt-3">
-                                                        <p class="mb-0">Monthly Limit</p>
+                                                        <p class="mb-0">Wage</p>
                                                         <h6 class="mb-0">$49750 remaining</h6>
                                                     </div>
                                                 </div>
-                                                <button type="submit" name="submit" class="btn btn-success w-100">Exchange
-                                                    Now</button>
-
+                                                <button type="submit" name="submit" class="btn btn-success w-100">Exchange Now</button>
                                             </form>
                                         </div>
                                         <div class="tab-pane fade" id="sell">
@@ -320,7 +343,9 @@
                 </div>
             </div>
         </div>
+
     @elseif(Auth::user()->lang == 'fa')
+
         <div class="page_title">
             <div class="container">
                 <div class="row">
@@ -659,5 +684,6 @@
                 </div>
             </div>
         </div>
+
     @endif
 @endsection

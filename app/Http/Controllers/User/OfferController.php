@@ -19,7 +19,8 @@ class OfferController extends Controller
     public function index()
     {
         return view('panel.user.offer.index')->with([
-            'offers' => Auth::user()->offers()->orderBy('created_at','desc')->get(),
+            'activeOffers' => Auth::user()->offers()->where('is_accept','!=',1)->orderBy('created_at','desc')->get(),
+            'acceptOffers' => Auth::user()->offers()->where('is_accept',1)->orderBy('created_at','desc')->get(),
         ]);
     }
 
@@ -30,7 +31,9 @@ class OfferController extends Controller
 
         Notification::send($order->user()->get(), new SendOffer());
 
-        return redirect()->back()->with('success', 'پیشنهاد شما با موفقیت ثبت شد.');
+        return view('panel.user.verify.verify')->with([
+            'page' => '/user/offer/index',
+        ]);
     }
 
     public function accept_offer(AcceptOfferRequest $request)
