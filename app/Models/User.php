@@ -22,6 +22,13 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'lang',
+        'profile_photo',
+        'present_address',
+        'permanent_address',
+        'city',
+        'postal_code',
+        'country',
     ];
 
     /**
@@ -46,13 +53,21 @@ class User extends Authenticatable
 
     public function orders()
     {
-        return $this->hasMany(Order::class,'user_id');
+        return $this->hasMany(Order::class, 'user_id');
     }
 
     public function offers()
     {
-        return  $this->hasMany(Offer::class,'user_id');
+        return  $this->hasMany(Offer::class, 'user_id');
     }
 
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class, 'user_id');
+    }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'user_id');
+    }
 }
