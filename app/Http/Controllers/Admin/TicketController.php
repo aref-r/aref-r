@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Ticket;
@@ -21,9 +21,9 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->get();
- 
-        return view('panel.user.tickets.user_tickets')->with(['tickets' => $tickets]);
+        $tickets = Ticket::orderBy('updated_at', 'DESC')->get();
+
+        return view('panel.admin.tickets.index')->with(['tickets' => $tickets]);
     }
 
     /**
@@ -73,14 +73,8 @@ class TicketController extends Controller
 
         $comments = $ticket->comments;
 
-        foreach (Auth::user()->unreadnotifications as $notification) {
-            if ($notification->data['ticket_id'] == $ticket->id) {
-                $notification->markAsRead();
-            }
-        }
-        return view('panel.user.tickets.show')->with(['ticket' => $ticket, 'comments' => $comments]);
+        return view('panel.admin.tickets.show')->with(['ticket' => $ticket, 'comments' => $comments]);
     }
-
 
     public function showByTicket_Id($ticket_id)
     {
@@ -125,5 +119,16 @@ class TicketController extends Controller
     }
 
 
+    public function close($ticket_id)
+    {
+        $ticket = Ticket::where('ticket_id', $ticket_id)->firstOrFail();
 
+        $ticket->status = 'Closed';
+
+        $ticket->save();
+
+        Mail::to($ticket->user->email)->send(new PaypoolerMails('emails.ticket_status', "CLOSE: $ticket->title (Ticket ID: $ticket->ticket_id)", $ticket->user, $ticket));
+
+        return redirect()->back()->with("success", "The ticket has been closed.");
+    }
 }

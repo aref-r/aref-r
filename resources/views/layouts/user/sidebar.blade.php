@@ -71,7 +71,7 @@
         <div class="menu">
             <ul>
                 <li>
-                    <a href="/home"">
+                    <a href="/home">
                         <span><i class="mdi mdi-view-dashboard"></i></span>
                         <span class="nav-text">داشبورد</span>
                     </a>
