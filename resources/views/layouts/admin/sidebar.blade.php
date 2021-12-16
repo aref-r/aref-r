@@ -1,7 +1,7 @@
 <div class="sidebar">
     <a class="brand-logo" href="index.html">
         <img src="./images/logo.png" alt="">
-        <span>Pay Pooler </span></a>
+        </a>
     <div class="menu">
         <ul>
             <li>
@@ -23,6 +23,18 @@
             <li><a href="settings.html">
                     <span><i class="mdi mdi-settings"></i></span>
                     <span class="nav-text">Setting</span>
+                </a>
+            </li>
+            <li><a href="{{ route('admin.ticket.index') }}">
+                    <span><i class="mdi mdi-message-bulleted"></i></span>
+                    <span class="nav-text">messages</span>
+                    @isset($openTickets)
+                    @if ($openTickets > 0)
+                            <span class="bubble">
+                                {{ $openTickets }}
+                            </span>
+                    @endif
+                    @endisset
                 </a>
             </li>
         </ul>

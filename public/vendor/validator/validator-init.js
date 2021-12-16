@@ -149,8 +149,8 @@ $(function () {
 $(function () {
     $(".personal_validate").validate({
         rules: {
-            fullname: "required",
-            dob: "required",
+            // fullname: "required",
+            // dob: "required",
             email: {
                 required: true,
                 email: true
@@ -159,13 +159,13 @@ $(function () {
                 required: true,
                 minlength: 5
             },
-            presentaddress: "required",
-            permanentaddress: "required",
-            city: "required",
-            postal: "required",
-            country: {
-                required: true
-            }
+            // presentaddress: "required",
+            // permanentaddress: "required",
+            // city: "required",
+            // postal: "required",
+            // country: {
+            //     required: true
+            // }
         },
         messages: {
             firstname: "Please enter your firstname",

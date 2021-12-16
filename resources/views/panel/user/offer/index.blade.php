@@ -6,35 +6,41 @@
         table tr {
             cursor: pointer;
         }
+
     </style>
 
 @endsection
 
-
 @section('content')
 
-
     @if (\Session::has('success'))
-        <div class="alert alert-success">
-            <ul>
-                <li>{!! \Session::get('success') !!}</li>
-            </ul>
-        </div>
+        @javascript('success', session('success'))
+        @javascript('type', 'success')
+    @elseif(\Session::has('info'))
+        @javascript('info', session('info'))
+        @javascript('type', 'info')
+    @elseif(\Session::has('warning'))
+        @javascript('warning', session('warning'))
+        @javascript('type', 'warning')
+    @elseif(\Session::has('error'))
+        @javascript('error', session('error'))
+        @javascript('type', 'error')
     @endif
-    <div class="page_title">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="page_title-content">
-                        <p>Welcome Back,
-                            <span> Carla Pascle</span>
-                        </p>
+
+    @if (Auth::user()->lang == 'en')
+        <div class="page_title">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="page_title-content">
+                            <p>Welcome Back,
+                                <span> Carla Pascle</span>
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
 
     <div class="content-body">
         <div class="container">
@@ -146,12 +152,12 @@
                                                     <td class="text-success">{{$offer->fee}} IRR </td>
                                                     <td>{{$offer->amount}}</td>
                                                     <td><a class="btn" href="{{ route('user.order.show',['id' =>  $offer->id]) }}">show</a></td>
-
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                        </tbody>
-                                    </table>
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -159,8 +165,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
+    @elseif(Auth::user()->lang == 'fa')
+    @endif
 @endsection
-
-
