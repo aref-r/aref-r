@@ -13,27 +13,20 @@
 
 @section('content')
 
+@if (\Session::has('success'))
+@javascript('success', session('success'))
+@javascript('type', 'success')
+@elseif(\Session::has('info'))
+@javascript('info', session('info'))
+@javascript('type', 'info')
+@elseif(\Session::has('warning'))
+@javascript('warning', session('warning'))
+@javascript('type', 'warning')
+@elseif(\Session::has('error'))
+@javascript('error', session('error'))
+@javascript('type', 'error')
+@endif
 
-    @if (\Session::has('success'))
-        <div class="alert alert-success">
-            <ul>
-                <li>{!! \Session::get('success') !!}</li>
-            </ul>
-        </div>
-    @endif
-    <div class="page_title">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-12">
-                    <div class="page_title-content">
-                        <p>Welcome Back,
-                            <span> Carla Pascle</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="content-body">
         <div class="verification section-padding mb-80">
             <div class="container h-100">

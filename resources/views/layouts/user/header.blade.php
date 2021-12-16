@@ -7,7 +7,7 @@
                     <nav class="navbar">
 
                         <div class="header-search d-flex align-items-center">
-                            <a class="brand-logo me-3" href="index.html">
+                            {{-- <a class="brand-logo me-3" href="index.html">
                                 <img src="{{ asset('/images/logo.png') }}" alt="" width="30">
                             </a>
                             <form action="#">
@@ -18,7 +18,7 @@
                                                 class="fa fa-search"></i></span>
                                     </div>
                                 </div>
-                            </form>
+                            </form> --}}
                         </div>
 
 
@@ -109,6 +109,48 @@
         </div>
     </div>
 </div>
+
+@if (Auth::user()->lang == 'en')
+<div class="page_title">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="page_title-content">
+                    <p>Welcome Back,
+                        <span>
+                            @isset(Auth::user()->name)
+                            {{Auth::user()->name}}
+                            @else
+                                {{Auth::user()->email}}
+                            @endisset
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@elseif (Auth::user()->lang == 'fa')
+<div class="page_title">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="page_title-content">
+                    <p>خوش آمدید
+                        <span> 
+                            @isset(Auth::user()->name)
+                            {{Auth::user()->name}}
+                            @else
+                                {{Auth::user()->email}}
+                            @endisset
+                        </span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endif
 <script>
     function logoutForm() {
         event.preventDefault();

@@ -56,9 +56,8 @@ Route::group(['prefix' => 'user','middleware' => ['auth'] ], function() {
     Route::get('receipt/create/{order}', 'User\ReceiptController@create')->name('user.receipt.create');
     Route::post('receipt/store', 'User\ReceiptController@store')->name('user.receipt.store');
 
-    // dashboard + history + account
+    // dashboard + account
     Route::get('dashboard', function(){ return view('panel.user.dashboard');})->name('user.dashboard');
-    Route::get('history', function(){ return view('panel.user.history');})->name('user.history');
     Route::get('account', function(){ return view('panel.user.account');})->name('user.account');
 
     // Account
