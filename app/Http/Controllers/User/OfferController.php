@@ -31,7 +31,9 @@ class OfferController extends Controller
 
         Notification::send($order->user()->get(), new SendOffer());
 
-        return redirect()->back()->with('success', 'پیشنهاد شما با موفقیت ثبت شد.');
+        return view('panel.user.verify.verify')->with([
+            'page' => '/user/offer/index',
+        ]);
     }
 
     public function accept_offer(AcceptOfferRequest $request)

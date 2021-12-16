@@ -17,8 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $userInfo = User::find(Auth::user()->id);
-        return view('panel.user.setting', compact('userInfo'));
+
     }
 
     /**
@@ -48,9 +47,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        $userInfo = Auth::user();
+        return view('panel.user.setting', compact('userInfo'));
     }
 
     /**

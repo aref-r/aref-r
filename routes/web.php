@@ -62,7 +62,7 @@ Route::group(['prefix' => 'user','middleware' => ['auth'] ], function() {
     Route::get('account', function(){ return view('panel.user.account');})->name('user.account');
 
     // Account
-    Route::get('setting', 'User\UserController@index')->name('user.account.index');
+    Route::get('setting', 'User\UserController@show')->name('user.account.show');
     Route::post('setting/update', 'User\UserController@update')->name('user.account.update');
 
 });

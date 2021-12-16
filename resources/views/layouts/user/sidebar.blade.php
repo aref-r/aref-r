@@ -1,32 +1,30 @@
 @if (Auth::user()->lang == 'en')
     <div class="sidebar">
-        <a class="brand-logo" href="{{ route('user.dashboard') }}">
+        <a class="brand-logo" href="index.html">
             <img src="{{ asset('/images/logo.png') }}" alt="">
-        </a>
+            <span>Pay Pooler </span></a>
         <div class="menu">
             <ul>
                 <li>
-                    <a href="{{ route('user.dashboard') }}">
+                    <a href="/home">
                         <span><i class="mdi mdi-view-dashboard"></i></span>
                         <span class="nav-text">Home</span>
                     </a>
                 </li>
-                <li><a href="{{ route('user.order.create') }}">
+                <li><a href="{{ route('user.order.index') }}">
                         <span><i class="mdi mdi-repeat"></i></span>
-                        <span class="nav-text">Exchange</span>
+                        <span class="nav-text">My Orders</span>
                     </a>
                 </li>
-                <li><a href="{{ route('user.history') }}">
-                        <span><i class="mdi mdi-history"></i></span>
-                        <span class="nav-text">History</span>
+                <li><a href="{{ route('user.offer.index') }}">
+                        <span><i class="mdi mdi-repeat"></i></span>
+                        <span class="nav-text">My Offers</span>
                     </a>
                 </li>
                 <li><a href="{{ route('user.account') }}">
                         <span><i class="mdi mdi-account"></i></span>
-                        <span class="nav-text">Account</span>
-                    </a>
-                </li>
-                <li><a href="{{ route('user.account.index') }}">
+                        <span class="nav-text">Account</span></a></li>
+                <li><a href="{{ route('user.account.show') }}">
                         <span><i class="mdi mdi-settings"></i></span>
                         <span class="nav-text">Setting</span>
                     </a>
@@ -81,6 +79,16 @@
                         <span class="nav-text">تبادل</span>
                     </a>
                 </li>
+                <li><a href="{{ route('user.order.index') }}">
+                        <span><i class="mdi mdi-repeat"></i></span>
+                        <span class="nav-text">سفارشات من</span>
+                    </a>
+                </li>
+                <li><a href="{{ route('user.offer.index') }}">
+                        <span><i class="mdi mdi-repeat"></i></span>
+                        <span class="nav-text">پیشنهادات من</span>
+                    </a>
+                </li>
                 <li><a href="{{ route('user.history') }}">
                         <span><i class="mdi mdi-history"></i></span>
                         <span class="nav-text">تاریخچه تراکنش ها</span>
@@ -91,7 +99,7 @@
                         <span class="nav-text">حساب من</span>
                     </a>
                 </li>
-                <li><a href="{{ route('user.account.index') }}">
+                <li><a href="{{ route('user.account.show') }}">
                         <span><i class="mdi mdi-settings"></i></span>
                         <span class="nav-text">تنظیمات</span>
                     </a>
