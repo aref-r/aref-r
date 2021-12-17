@@ -66,8 +66,8 @@
 
     <div class="sidebar">
         <a class="brand-logo" href="index.html">
-            <img src="./images/logo.png" alt="">
-            <span>PayPooler</span></a>
+            <img src="{{ asset('/images/logo.png') }}" alt="">
+           </a>
         <div class="menu">
             <ul>
                 <li>

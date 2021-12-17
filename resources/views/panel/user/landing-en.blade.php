@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Treemium </title>
+    <title>Paypooler </title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="./images/favicon.png">
     <!-- Custom Stylesheet -->
@@ -161,8 +161,8 @@
                     <div class="col-xl-7">
                         <div class="section_heading">
                             <span>Explore</span>
-                            <h3>The World's Leading Treemium ocurrency Exchange</h3>
-                            <p>Trade Bitcoin, ETH, and hundreds of other Treemium ocurrencies in minutes.</p>
+                            <h3>The World's Leading Paypooler ocurrency Exchange</h3>
+                            <p>Trade Bitcoin, ETH, and hundreds of other Paypooler ocurrencies in minutes.</p>
                         </div>
                     </div>
                 </div>
@@ -268,7 +268,7 @@
                     <div class="col-xl-7">
                         <div class="section_heading">
                             <span>Features</span>
-                            <h3>The most trusted Treemium ocurrency platform</h3>
+                            <h3>The most trusted Paypooler ocurrency platform</h3>
                             <p>Here are a few reasons why you should choose Coinbase</p>
                         </div>
                     </div>
@@ -286,7 +286,7 @@
                         <div class="features-content">
                             <span><i class="fa fa-cubes"></i></span>
                             <h4>Protected by insurance</h4>
-                            <p>Treemium ocurrency stored on our servers is covered by our insurance policy.</p>
+                            <p>Paypooler ocurrency stored on our servers is covered by our insurance policy.</p>
                             <a href="#">Learn more <i class="la la-angle-right"></i></a>
                         </div>
                     </div>
@@ -294,7 +294,7 @@
                         <div class="features-content">
                             <span><i class="fa fa-life-ring"></i></span>
                             <h4>Industry best practices</h4>
-                            <p>Treemium supports a variety of the most popular digital currencies.</p>
+                            <p>Paypooler supports a variety of the most popular digital currencies.</p>
                             <a href="#">Learn more <i class="la la-angle-right"></i></a>
                         </div>
                     </div>
@@ -408,7 +408,7 @@
 
         <div class="alert alert-light fade show">
             <p>
-                We use cookies to enhance your experience. By using Treemium , you agree to our <a href="#">Terms of
+                We use cookies to enhance your experience. By using Paypooler , you agree to our <a href="#">Terms of
                     Use</a> and <a href="#">Privacy
                     Policy</a>
             </p>
