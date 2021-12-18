@@ -21,7 +21,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $tickets = Ticket::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->get();
+        $tickets = Auth::user()->tickets()->get();
  
         return view('panel.user.tickets.index')->with(['tickets' => $tickets]);
     }
@@ -69,7 +69,7 @@ class TicketController extends Controller
      */
     public function show(ticket $ticket)
     {
-        $ticket = Ticket::where('ticket_id', $ticket->ticket_id)->firstOrFail();
+        $ticket = Auth::user()->tickets()->where('ticket_id', $ticket->ticket_id)->firstOrFail();
 
         $comments = $ticket->comments;
 
