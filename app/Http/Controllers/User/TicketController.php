@@ -23,7 +23,7 @@ class TicketController extends Controller
     {
         $tickets = Ticket::where('user_id', Auth::user()->id)->orderBy('updated_at', 'DESC')->get();
  
-        return view('panel.user.tickets.user_tickets')->with(['tickets' => $tickets]);
+        return view('panel.user.tickets.index')->with(['tickets' => $tickets]);
     }
 
     /**
