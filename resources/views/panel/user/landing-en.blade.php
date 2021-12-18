@@ -68,7 +68,7 @@
                                 <div class="d-flex align-items-center">
                                     <div class="header_auth">
                                         <a href="{{route('login')}}" class="btn btn-primary">Sign In</a>
-                                        <a href="./signup.html" class="btn btn-outline-primary">Sign Up</a>
+                                        <a href="{{ route('register') }}" class="btn btn-outline-primary">Sign Up</a>
                                     </div>
                                 </div>
                             </div>
@@ -86,12 +86,12 @@
                             <h2>Money <br>Beyond Border</h2>
                             <p>Fast and secure way to exchange ocurrencies</p>
                             <div class="mt-4">
-                                <a href="#" class="btn my-1 waves-effect">
+                                {{-- <a href="#" class="btn my-1 waves-effect">
                                     <img src="./images/android.svg" alt="">
                                 </a>
                                 <a href="#" class="btn my-1 waves-effect">
                                     <img src="./images/apple.svg" alt="">
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                     </div>
