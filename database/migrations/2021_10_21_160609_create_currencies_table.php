@@ -17,6 +17,7 @@ class CreateCurrenciesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('symbol');
+            $table->integer('value');
             $table->string('icon')->nullable();;
             $table->timestamps();
         });

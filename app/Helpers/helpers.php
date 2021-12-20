@@ -2,15 +2,16 @@
 
 namespace App\Helpers;
 
-use App\Models\Admin;
+use App\Models\Currency;
 
 class Helpers
 {
 
-    public function navasan($currency)
+    public function navasan()
     {
         //API URL
-        $api_url = "http://api.navasan.tech/latest/?api_key=" . Admin::pluck('navasan_api_key') . '&item=' . $currency;
+        // $api_url = "http://api.navasan.tech/latest/?api_key=" . 'freebY6P9QDXwlFfP62aE1A07E5DMhSG';
+        $api_url = "http://paypooler.webflaxco.ir/public/json/tech.json"; // fake url instead
         
         //create a new cURL resource
         $ch = curl_init($api_url);
@@ -21,12 +22,28 @@ class Helpers
         //return response instead of outputting
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-        //execute the POST request
-        $result = json_decode(curl_exec($ch));
+        //execute the request
+        $result = json_decode(curl_exec($ch),true);
 
         //close cURL resource
         curl_close($ch);
 
-        dd($result);
+        //delete all table content if json is not null
+        if(!is_null($result)){
+            Currency::truncate();
+        }
+
+        //insert currency rows
+        foreach($result as $key => $value){
+            if (!isset($value['value'])){
+                continue;
+            }
+        $currency = new Currency([
+            'name' => $key,
+            'symbol' => $key,
+            'value' => $value['value']
+        ]);
+        $currency->save();
+        }        
     }
 }
